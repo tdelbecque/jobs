@@ -7,4 +7,3 @@ var fileout = require ('path').dirname (process.argv [1]) + '/save/tothor-' + ne
 
 F.requestNSToBing (fileout);
 
-#TEST
