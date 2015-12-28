@@ -1,0 +1,170 @@
+1000	General	General
+1100	Agricultural and Biological Sciences(all)	Life Sciences
+1200	Arts and Humanities(all)	General
+1300	Biochemistry, Genetics and Molecular Biology(all)	Life Sciences
+1400	Business, Management and Accounting(all)	Operations
+1500	Chemical Engineering(all)	Chemistry
+1600	Chemistry(all)	Chemistry
+1700	Computer Science(all)	Maths & IT
+1800	Decision Sciences(all)	Operations
+1900	Earth and Planetary Sciences(all)	Earth, Environment & Energy
+2000	Economics, Econometrics and Finance(all)	Operations
+2100	Energy(all)	Earth, Environment & Energy
+2200	Engineering(all)	Engineering
+2300	Environmental Science(all)	Earth, Environment & Energy
+2400	Immunology and Microbiology(all)	Life Sciences
+2500	Materials Science(all)	Chemistry
+2600	Mathematics(all)	Maths & IT
+2700	Medicine(all)	Life Sciences
+2800	Neuroscience(all)	Life Sciences
+2900	Nursing(all)	Clinical
+3000	Pharmacology, Toxicology and Pharmaceutics(all)	Life Sciences
+3100	Physics and Astronomy(all)	Physics
+3200	Psychology(all)	Life Sciences
+3300	Social Sciences(all)	General
+3400	veterinary(all)	Life Sciences
+3500	Dentistry(all)	Life Sciences
+3600	Health Professions(all)	Clinical
+1912	Space and Planetary Science	Physics:Space science
+3108	Radiation	Physics:Radiation Jobs
+3614	Radiological and Ultrasound Technology	Physics:Radiation Jobs
+2737	Physiology (medical)	Physics:Medical
+2504	Electronic, Optical and Magnetic Materials	Physics:Materials Science
+2741	Radiology Nuclear Medicine and imaging	Physics:Imaging, Laser & Optics
+3107	Atomic and Molecular Physics, and Optics	Physics:Imaging, Laser & Optics
+3104	Condensed Matter Physics	Physics:Condensed matter
+3101	Physics and Astronomy (miscellaneous)	Physics
+1405	Management of Technology and Innovation	Operations:Technology Transfer
+2308	Management, Monitoring, Policy and Law	Operations:Policy
+2719	Health Policy	Operations:Policy
+1504	Chemical Health and Safety	Operations:Health and Safety
+1804	Statistics, Probability and Uncertainty	Maths & IT:Statistics
+2613	Statistics and Probability	Maths & IT:Statistics
+1706	Computer Science Applications	Maths & IT:Software Engineering
+1712	Software	Maths & IT:Software Engineering
+1711	Signal Processing	Maths & IT:Signal Processing
+2611	Modelling and Simulation	Maths & IT:Modelling/Simulation
+2602	Algebra and Number Theory	Maths & IT:Mathematics
+1705	Computer Networks and Communications	Maths & IT:Information Technology
+1708	Hardware and Architecture	Maths & IT:Information Technology
+1710	Information Systems	Maths & IT:Information Technology
+2603	Analysis	Maths & IT:Data Analysis
+1701	Computer Science (miscellaneous)	Maths & IT:Computer Science
+1704	Computer Graphics and Computer-Aided Design	Maths & IT:Computer Science
+1707	Computer Vision and Pattern Recognition	Maths & IT:Computer Science
+1709	Human-Computer Interaction	Maths & IT:Computer Science
+1903	Computers in Earth Sciences	Maths & IT:Computer Science
+2614	Theoretical Computer Science	Maths & IT:Computer Science
+2604	Applied Mathematics	Maths & IT:Applied Mathematics
+2605	Computational Mathematics	Maths & IT:Applied Mathematics
+2606	Control and Optimization	Maths & IT:Applied Mathematics
+1702	Artificial Intelligence	Maths & IT:AI/Cybernetics
+1703	Computational Theory and Mathematics	Maths & IT
+2601	Mathematics (miscellaneous)	Maths & IT
+1103	Animal Science and Zoology	Life Sciences:Zoology
+2406	Virology	Life Sciences:Virology
+3401	veterinary (miscalleneous)	Life Sciences:Veterinary Medicine
+2307	Health, Toxicology and Mutagenesis	Life Sciences:Toxicology
+3001	Pharmacology, Toxicology and Pharmaceutics (miscellaneous)	Life Sciences:Toxicology
+3005	Toxicology	Life Sciences:Toxicology
+1315	Structural Biology	Life Sciences:Structural Biology
+3201	Psychology (miscellaneous)	Life Sciences:Psychology
+3202	Applied Psychology	Life Sciences:Psychology
+3203	Clinical Psychology	Life Sciences:Psychology
+3204	Developmental and Educational Psychology	Life Sciences:Psychology
+3205	Experimental and Cognitive Psychology	Life Sciences:Psychology
+3206	Neuropsychology and Physiological Psychology	Life Sciences:Psychology
+3207	Social Psychology	Life Sciences:Psychology
+2738	Psychiatry and Mental health	Life Sciences:Psychiatry
+2803	Biological Psychiatry	Life Sciences:Psychiatry
+1314	Physiology	Life Sciences:Physiology
+2736	Pharmacology (medical)	Life Sciences:Pharmacology
+3004	Pharmacology	Life Sciences:Pharmacology
+2734	Pathology and Forensic Medicine	Life Sciences:Pathology
+2918	Pathophysiology	Life Sciences:Pathology
+2801	Neuroscience (miscellaneous)	Life Sciences:Neuroscience
+2802	Behavioral Neuroscience	Life Sciences:Neuroscience
+2804	Cellular and Molecular Neuroscience	Life Sciences:Neuroscience
+2805	Cognitive Neuroscience	Life Sciences:Neuroscience
+2806	Developmental Neuroscience	Life Sciences:Neuroscience
+2404	Microbiology	Life Sciences:Microbiology
+2726	Microbiology (medical)	Life Sciences:Microbiology
+2712	Endocrinology, Diabetes and Metabolism	Life Sciences:Metabolism
+2701	Medicine (miscellaneous)	Life Sciences:Medicine
+2725	Infectious Diseases	Life Sciences:Infectious Diseases
+2401	Immunology and Microbiology (miscellaneous) 	Life Sciences:Immunology
+2403	Immunology	Life Sciences:Immunology
+2723	Immunology and Allergy	Life Sciences:Immunology
+2717	Geriatrics and Gerontology	Life Sciences:Gerontology/Aging
+2909	Gerontology	Life Sciences:Gerontology/Aging
+1311	Genetics	Life Sciences:Genetics & Genomics
+2716	Genetics(clinical)	Life Sciences:Genetics & Genomics
+2713	Epidemiology	Life Sciences:Epidemiology
+1105	Ecology, Evolution, Behavior and Systematics	Life Sciences:Ecology
+2303	Ecology	Life Sciences:Ecology
+2709	Drug guides	Life Sciences:Drug Development & Discovery
+3002	Drug Discovery	Life Sciences:Drug Development & Discovery
+1309	Developmental Biology	Life Sciences:Developmental Biology
+1102	Agronomy and Crop Science	Life Sciences:Crop Science
+1307	Cell Biology	Life Sciences:Cell Biology
+2705	Cardiology and Cardiovascular Medicine	Life Sciences:Cardiology
+1306	Cancer Research	Life Sciences:Cancer Research/Oncology
+2730	Oncology	Life Sciences:Cancer Research/Oncology
+2917	Oncology(nursing)	Life Sciences:Cancer Research/Oncology
+1110	Plant Science	Life Sciences:Botany/Plant Science
+1305	Biotechnology	Life Sciences:Biotechnology
+1304	Biophysics	Life Sciences:Biophysics
+1301	Biochemistry, Genetics and Molecular Biology (miscellaneous)	Life Sciences:Biochemistry
+1303	Biochemistry	Life Sciences:Biochemistry
+1308	Clinical Biochemistry	Life Sciences:Biochemistry
+3403	Food Animals	Life Sciences:Animal Health
+3404	Small Animals	Life Sciences:Animal Health
+1101	Agricultural and Biological Sciences (miscellaneous)	Life Sciences:Agriculture
+2213	Safety, Risk, Reliability and Quality	Engineering:Quality control
+2104	Nuclear Energy and Engineering	Engineering:Nuclear Engineering
+2210	Mechanical Engineering	Engineering:Mechanical engineering
+1909	Geotechnical Engineering and Engineering Geology	Engineering:Geotechnical Engineering
+2208	Electrical and Electronic Engineering	Engineering:Electrical engineering
+2205	Civil and Structural Engineering	Engineering:Civil/Structural Engineering
+1502	Bioengineering	Engineering:Biomedical Engineering
+2204	Biomedical Engineering	Engineering:Biomedical Engineering
+2203	Automotive Engineering	Engineering:Automotive engineering
+2201	Engineering (miscellaneous)	Engineering
+1104	Aquatic Science	Earth, Environment & Energy:Water Quality
+2312	Water Science and Technology	Earth, Environment & Energy:Water Quality
+2311	Waste Management and Disposal	Earth, Environment & Energy:Waste Management
+1111	Soil Science	Earth, Environment & Energy:Soil Science
+1913	Stratigraphy	Earth, Environment & Energy:Seismology
+2105	Renewable Energy, Sustainability and the Environment	Earth, Environment & Energy:Renewables
+1910	Oceanography	Earth, Environment & Energy:Oceanography
+1908	Geophysics	Earth, Environment & Energy:Geophysics
+3305	Geography, Planning and Development	Earth, Environment & Energy:Geography
+2715	Gastroenterology	Earth, Environment & Energy:Gas
+2305	Environmental Engineering	Earth, Environment & Energy:Environmental Engineering
+2309	Nature and Landscape Conservation	Earth, Environment & Energy:Ecology & Conservation
+1902	Atmospheric Science	Earth, Environment & Energy:Atmospheric Sciences
+3102	Acoustics and Ultrasonics	Earth, Environment & Energy:Acoustics
+1901	Earth and Planetary Sciences (miscellaneous)	Earth, Environment & Energy
+2101	Energy (miscellaneous)	Earth, Environment & Energy
+2301	Environmental Science (miscellaneous)	Earth, Environment & Energy
+2911	Leadership and Management	Clinical:Project Management
+1607	Spectroscopy	Chemistry:Spectroscopy
+1508	Process Chemistry and Technology	Chemistry:Process Chemistry
+2507	Polymers and Plastics	Chemistry:Polymer Chemistry
+1606	Physical and Theoretical Chemistry	Chemistry:Physical Chemistry
+3003	Pharmaceutical Science	Chemistry:Pharmaceutical Chemistry
+1605	Organic Chemistry	Chemistry:Organic Chemistry
+3106	Nuclear and High Energy Physics	Chemistry:Nuclear & Technology
+1312	Molecular Biology	Chemistry:Molecular Chemistry
+1313	Molecular Medicine	Chemistry:Molecular Chemistry
+2704	Biochemistry, medical	Chemistry:Medicinal Chemistry
+2501	Materials Science (miscellaneous)	Chemistry:Materials Science
+1604	Inorganic Chemistry	Chemistry:Inorganic Chemistry
+1906	Geochemistry and Petrology	Chemistry:Geochemistry
+1106	Food Science	Chemistry:Food Science & Nutrition
+2916	Nutrition and Dietetics	Chemistry:Food Science & Nutrition
+2304	Environmental Chemistry	Chemistry:Environmental Chemistry
+1501	Chemical Engineering (miscellaneous)	Chemistry:Chemical Engineering
+1503	Catalysis	Chemistry:Catalysis
+1602	Analytical Chemistry	Chemistry:Analytical Chemistry
+1601	Chemistry (miscellaneous)	Chemistry
