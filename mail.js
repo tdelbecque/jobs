@@ -4,7 +4,7 @@ var SERVICE_ALERT_SUBJ = 'SERVICE ALERT';
 function sendMeMail (subject, body) {
     sendmail({
 	from: 'jobs@sodad.com',
-	to: 'thierry.delbecque@sodad.com ',
+	to: 'jobs@sodad.com ',
 	subject: subject,
 	content: body,
     }, function(err, reply) {
