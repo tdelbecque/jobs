@@ -1,22 +1,15 @@
-process.on('uncaughtException', function (err) {
-  console.log(err);
-});
-
 var http = require('http');
 var https = require ('https');
 var xmldom = require ('xmldom');
 var xpath = require ('xpath');
+var url = require ('url');
+var qs = require ('querystring');
+var fs = require ('fs');
+var sendMeMail = require ('./mail').sendMeMail;
+var sendMeAlert = require ('./mail').sendMeAlert;
+var UTILS = require ('./process');
 
 var undef;
-
-function createServer () {
-    var req = null;
-    http.createServer(function (request, response) {
-	req = request;
-	response.writeHead(200, {'Content-Type': 'text/html'});
-	response.end('Woohoo!');
-    }).listen(8081);
-}
 
 function onResponse (response) {
     var body = '';
@@ -66,165 +59,85 @@ function dohttps (url, responseHandler) {
 
 exports.dohttps = dohttps;
 
-function percentEncode (s) {
-    s = encodeURIComponent(s);
-    s = s.replace(/\!/g, "%21");
-    s = s.replace(/\*/g, "%2A");
-    s = s.replace(/\'/g, "%27");
-    s = s.replace(/\(/g, "%28");
-    s = s.replace(/\)/g, "%29");
-    return s;
+function encode (x) {
+    return x.replace (/</g, '&lt;').replace (/>/g, '&gt;');
 }
 
-function BingIth (xs, i, onFinish) {
-    if (! i) console.log ('XBinging ' + xs.length + ' items');
-    if (i === xs.length) {
-	console.log ('Bing finished');
-	if (onFinish !== undef) 
-	    onFinish ();
-	return
+function responseEnd200 (response, load) {
+    response.writeHead(200, {'Content-Type': 'text/xml'});
+    response.end('<root>' + load + '</root>');
+}
+
+function responseEnd404 (response) {
+    response.writeHead(404, {'Content-Type': 'text/plain'});
+    response.end('Service not implemented');
+}
+
+function handleAlert (parameters, response) {
+    var msg = parameters.msg || 'Unspecified';
+    sendMeMail ('Alert from Thor', msg);
+    responseEnd200 (response, 'OK');
+}
+
+
+function handleGetXML (parameters, response, transformer) {
+    var data = UTILS.asArray (UTILS.aggregateData ());
+    if (! (data && data.length)) {
+	sendMeAlert ('Unable to build aggregated data');
+	responseEnd200 ('FAILURE');
+	return;
     }
-    var onResponse = function (response) {
-	var body = '';
-	response.on('data', function(d) {
-            body += d;
-	});
-	response.on ('end', function() {
-	    xs [i].length = 2;
-	    var x = /(https:\/\/...wikipedia.org\/wiki\/.*?)"/.exec (body);
-	    if (x) {
-		xs [i].push (x [1]);
-		console.log ('found ' + i)
-	    } else {
-		xs [i].push (null);
-		console.log ('not found ' + i)
-	    }
-	    BingIth (xs, i + 1, onFinish)
-	})
-    };
-    var query = 'https://www.bing.com/search?q=' + percentEncode (xs [i][1].trim () + " en.wikipedia");
-    https.get (query, onResponse).
-	on ('error', function (err) {console.log (err)})
-}
-
-exports.BingIth = BingIth;
-
-function WikiIth (xs, i, onFinish) {
-    if (! i) console.log ('Wikiing ' + xs.length + ' items'); 
-    if (i === xs.length) {
-	console.log ('Wiki finished');
-	if (onFinish !== undef) 
-	    onFinish ();
-	return
+    var xmldata = transformer (data);
+    if (! xmldata) {
+	sendMeAlert ('Unable to build XML load');
+	responseEnd200 ('FAILURE');
+	return;
     }
-    var onResponse = function (response) {
-	var body = '';
-	response.on ('data', function (d) {
-	    body += d;
-	});
-	response.on ('end', function () {
-	    var foobar = {content: body};
-	    var x = /.*(<html[^]*)/.exec (body);
-	    if (x) {
-		foobar.doc = new xmldom.DOMParser ().parseFromString (x [1]);
-		var countries = xpath.select ('//tr', foobar.doc).
-		    map (function (x) {
-			var nodes = xpath.select ('*[self::th or self::td]', x);
-			if (nodes.length !== 2) return null;
-			if (! /.*[Cc]ountry$/.exec (nodes [0].textContent)) return null;
-			return nodes [1].textContent
-		    }).
-		    filter (function (x) {return x});
-		foobar.countries = countries;
-		if (! foobar.countries.length) {
-		    if (xpath.select ('//a', foobar.doc).
-			filter (function (x) {return x.firstChild && x.firstChild.data === 'ISO 3166 code'}).length > 0) {
-			foobar.countries = [xpath.select ('//h1', foobar.doc) [0].firstChild.data]
-		    } 
-		}
-		xpath.select ('//span', foobar.doc).
-		    forEach (function (x) {
-			var c = x.getAttribute ('class'); 
-			if (c === 'longitude' || c === 'latitude') {
-			    foobar [c] = x.firstChild.data
-			}
-		    });
-		xs [i].push ({countries: foobar.countries, longitude: foobar.longitude, latitude: foobar.latitude});
-		if (foobar.longitude) console.log ('Wiki got ' + i);
-		else console.log ('Wiki not got ' + i);
-	    }
-	    else console.log ('Wiki not got ' + i);
-	    WikiIth (xs, i + 1, onFinish)
-	})
-    };
-    var query = xs [i][2];
-    if (query) {
-	https.get (query, onResponse).
-	    on ('error', function (err) {console.log (err)})
-	
-    } else {
-	console.log ('Wiki skip ' + i);
-	xs [i].push (null);
-	WikiIth (xs, i + 1, onFinish)
+    var load = /<root>(.*)<\/root>/.exec (xmldata.toString ()) [1];
+    if (! (load && typeof load === 'string' && load.length)) {
+	sendMeAlert ('Unable to build XML load');
+	responseEnd200 ('FAILURE');
+	return;
     }
-}
-
-exports.WikiIth = WikiIth;
-
-function clusterArrayPerValues (xs) {
-    var clusters = {};
-    xs.forEach (function (x) {(clusters [x [1]] || (clusters [x [1]] = [])). push (x [0])});
-    var ret = [];
-    Object.keys (clusters).forEach (
-	function (x) {
-	    ret.push ([clusters [x], x])
-	});
-    return ret;
-} 
-
-function unclusterArray (xs) {
-    var ret = []
-    xs.forEach (function (x) {
-	var v = x.slice (1);
-	x [0].forEach (function (y) {
-	    ret.push ([y].concat (v))
-	})
-    });
-    return ret;
-}
-
-exports.clusterArrayPerValues = clusterArrayPerValues;
-exports.unclusterArray = unclusterArray;
-
-function sexagesimalToDecimal (x) {
-    if (x === undef) return undef;
-    var y = /(\d+).(\d+).(\d+).(E|W|N|S)/.exec (x) || /(\d+).(\d+).(E|W|N|S)/.exec (x);
-    if (! y) return NaN;
-    if (y [4]) {
-	y3 = y [3];
-	y4 = y [4]
-    } else {
-	y3 = 0;
-	y4 = y [3]
+    load = encode (load);
+    if (load.length > 9999000) {
+	sendMeAlert ('Load too big (size = ' + load.length + ')');
+	responseEnd200 ('FAILURE');
+	return;
     }
-    var z = 1*y [1] + y [2]/60 + y3/3600;
-    return y4 === 'E' || y4 === 'N' ? z : -z;
+    responseEnd200 (response, load);
 }
-exports.sexagesimalToDecimal = sexagesimalToDecimal;
 
-function clusteredWikiToData (wiki, data) {
-    var keyToLocation = {};
-    var unclustered = unclusterArray (wiki).forEach (
-	function (x) {
-	    keyToLocation [x [0]] = {
-		latitude: (x [3] && sexagesimalToDecimal (x [3].latitude)) || undef,
-		longitude: (x [3] && sexagesimalToDecimal (x [3].longitude)) || undef
-	    }
+function handleGetJobs (parameters, response) {
+    handleGetXML (parameters, response, UTILS.asXML)
+}
+
+function handleGetJobshc (parameters, response) {
+    handleGetXML (parameters, response, UTILS.HCTuplesAsXML)
+}
+
+var queryHandlers = {
+    "/alert": handleAlert,
+    "/jobs": handleGetJobs,
+    "/jobshc": handleGetJobshc
+};
+
+var defaultPort = 8081;
+function createServer (port, handlers) {
+    if (port === undef) port = defaultPort;
+    if (handlers === undef) handlers = queryHandlers;
+    return http.createServer (function (request, response) {
+	var parsedUrl = url.parse (request.url);
+	var pathname = parsedUrl.pathname;
+	var parameters = qs.parse (parsedUrl.query);
+	var h = handlers [pathname];
+	if (h === undef) {
+	    responseEnd404 (response);
+	    sendMeAlert ('Suspicious query : ' + request.url);
+	} else {
+	    h (parameters, response);
 	}
-    );
-
-    data.latitudes = data.id.map (function (k) {return (keyToLocation [k] && keyToLocation [k].latitude) || undef});
-    data.longitudes = data.id.map (function (k) {return (keyToLocation [k] && keyToLocation [k].longitude) || undef});
+    }).listen (port);
 }
- 
-exports.clusteredWikiToData = clusteredWikiToData;
+
+exports.createServer = createServer;

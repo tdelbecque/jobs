@@ -7,10 +7,4 @@ process.on('uncaughtException', function (err) {
     sendMeAlert ('uncaughtException : ' + err)
 });
 
-var ja = require ('./nsjobads');
-var F = new ja ().setNSFull ();
-
-var stamp = new Date ().getTime ();
-
-F.requestNSToBing (stamp);
-
+require ('./server').createServer ()

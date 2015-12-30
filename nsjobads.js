@@ -1,7 +1,9 @@
 var crypto = require ('crypto');
 var http = require ('http');
 var UTILS = require ('./process');
-var S = require ('./server');
+var S = UTILS;
+var fs = require ('fs');
+var sendMeMail = require ('./mail').sendMeMail;
 
 var undef;
 
@@ -212,17 +214,19 @@ F.prototype = {
 	return this.request (this.digest (this.consumerSecret).header, params);
     },
 
-    requestNSToBing: function (fileout) {
-	var savedir = require ('path').dirname (process.argv [1]) + '/save';
+    requestNSToBing: function (stamp) {
+	if (stamp === undef) stamp = new Date ().getTime ();
+	var savedir = require ('path').dirname (process.argv [1]) + '/save/';
 	var state = {};
 	var onEnd = function () {
+	    fs.writeFileSync (savedir + 'load-' + stamp + '.js', JSON.stringify (state));
 	    state.data = new UTILS.utils (JSON.parse (state.content.toString ()));
 	    state.locations = S.clusterArrayPerValues (UTILS.zip (state.data.id, state.data.locations));
 	    var onWikiEnd = function () {
 		S.clusteredWikiToData (state.locations, state.data);
-		if (fileout !== undef) {
-		    UTILS.writeTuplesToFile (state.data, fileout)
-		}
+		fs.writeFileSync (savedir + 'data-' + stamp + '.js', JSON.stringify (state.data));
+		UTILS.writeTuplesToFile (state.data, savedir + 'tothor-' + stamp + '.csv');
+		sendMeMail ('Jobs Update', 'New update : stamp = ' + stamp + ' ; N = ' + state.data.jobs.length);
 	    }
 	    var onBingEnd = function () {
 		var wikiFound = state.locations.filter (function (x) {return x.length === 3});
