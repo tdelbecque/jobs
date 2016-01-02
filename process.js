@@ -464,16 +464,22 @@ exports.unclusterArray = unclusterArray;
 
 function sexagesimalToDecimal (x) {
     if (x === undef) return undef;
-    var y = /(\d+).(\d+).(\d+).(E|W|N|S)/.exec (x) || /(\d+).(\d+).(E|W|N|S)/.exec (x);
+    var y = /(\d+)°(\d+)′(\d+)″(E|W|N|S)/.exec (x) || /(\d+)°(\d+)′(E|W|N|S)/.exec (x) || /(\d+)°(E|W|N|S)/.exec (x) ||
+	/(\d+)°(\d+)′(\d+\.\d+)″(E|W|N|S)/.exec (x);
     if (! y) return NaN;
     if (y [4]) {
+	y2 = y [2];
 	y3 = y [3];
 	y4 = y [4]
-    } else {
+    } else if (y [3]) {
 	y3 = 0;
+	y2 = y [2];
 	y4 = y [3]
+    } else {
+	y2 = y3 = 0;
+	y4 = y [2]
     }
-    var z = 1*y [1] + y [2]/60 + y3/3600;
+    var z = 1*y [1] + y2/60 + y3/3600;
     return y4 === 'E' || y4 === 'N' ? z : -z;
 }
 exports.sexagesimalToDecimal = sexagesimalToDecimal;
@@ -596,3 +602,26 @@ function HCTuplesAsXML (array) {
 }
 
 exports.HCTuplesAsXML = HCTuplesAsXML;
+
+function createMailBody (header) {
+    if (header === undef) header = '';
+    var data = aggregateData ();
+    data = Object.keys (data).
+	map (function (k) {return data [k]});
+    var sectors = data.map (function (x) {return x.flattenSectors.split (';')});
+
+    var locationIssues = data.filter (function (x) {return x.latitude === 0 || x.longitude === 0});
+    
+    var x = {};
+    tabulate.call (x, sectors);
+    var body = header;
+
+    body = body + "NB ADS : " + data.length + "\n\n";
+    body = body + "GEO LOCATION ISSUES : " + locationIssues.length + "\n\n";
+    body = body + "SECTORS TABULATION\n\n";
+    body += x.tablePerFrequency.join ("\n");
+
+    return body;
+}
+
+exports.createMailBody = createMailBody;
