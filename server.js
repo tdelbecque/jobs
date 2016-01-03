@@ -73,6 +73,11 @@ function responseEnd404 (response) {
     response.end('Service not implemented');
 }
 
+function responseEnd401 (response) {
+    response.writeHead(401, {'Content-Type': 'text/plain'});
+    response.end('Unauthorized');
+}
+
 function handleAlert (parameters, response) {
     var msg = parameters.msg || 'Unspecified';
     sendMeMail ('Alert from Thor', msg);
@@ -122,20 +127,32 @@ var queryHandlers = {
     "/jobshc": handleGetJobshc
 };
 
+var getIP = require('ipware')().get_ip;
+var allowedIps = {};
+process.env.ALLOWED_IPS.
+    split (';').
+    forEach (function (ip) {allowedIps [ip] = 1});
+
 var defaultPort = 8081;
 function createServer (port, handlers) {
     if (port === undef) port = defaultPort;
     if (handlers === undef) handlers = queryHandlers;
     return http.createServer (function (request, response) {
-	var parsedUrl = url.parse (request.url);
-	var pathname = parsedUrl.pathname;
-	var parameters = qs.parse (parsedUrl.query);
-	var h = handlers [pathname];
-	if (h === undef) {
-	    responseEnd404 (response);
-	    sendMeAlert ('Suspicious query : ' + request.url);
+	var ip = getIP (request);
+	if (allowedIps [ip] === undef) {
+	    responseEnd401 (response);
+	    sendMeAlert ('Unauthorized query from ' + ip + ' : ' + request.url);
 	} else {
-	    h (parameters, response);
+	    var parsedUrl = url.parse (request.url);
+	    var pathname = parsedUrl.pathname;
+	    var parameters = qs.parse (parsedUrl.query);
+	    var h = handlers [pathname];
+	    if (h === undef) {
+		responseEnd404 (response);
+		sendMeAlert ('Suspicious query from ' + ip + ' : ' + request.url);
+	    } else {
+		h (parameters, response);
+	    }
 	}
     }).listen (port);
 }
