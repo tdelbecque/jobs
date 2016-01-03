@@ -7,7 +7,7 @@ function readLines (path, options) {
     var lines = options.lines || [];
     var whenFinish = options.whenFinish;
     var whenError = options.whenError;
-    var whenLine = options.whenLines;
+    var whenLine = options.whenLine;
     
     var str = '';
     if (lines === undef) lines = [];
@@ -15,7 +15,7 @@ function readLines (path, options) {
 	if (i == 0) {
 	    str += x
 	} else {
-	    lines.push (str);
+	    doLine (str);
 	    str = x;
 	}
     }
@@ -23,12 +23,10 @@ function readLines (path, options) {
 	if (whenLine !== undef)
 	    l = whenLine (l);
 	lines.push (l);
-	stream.close ();
     }
     
     function onData (x) {
 	x = x.toString ();
-	x = x.split ('').filter (function (c) {return c === '\n'}).join ('');
 	var parts = x.split ('\n');
 	if (parts [0] == '') {
 	    parts.shift ();
@@ -91,3 +89,16 @@ function getFresherFileSync (directory, filter) {
 }
 
 exports.getFresherFileSync = getFresherFileSync;
+
+function getIds (file, options) {
+    function whenLine (s) {
+	var m, l = [], re =/"(\d+)[^"]*trackid/g;
+	while (m = re.exec (s)) {l.push (m [1])};
+	return l
+    }
+    if (options == undef) options = {};
+    options.whenLine = whenLine;
+    readLines (file, options)
+}
+
+exports.getIds = getIds;
