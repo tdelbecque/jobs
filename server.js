@@ -138,7 +138,7 @@ function createServer (port, handlers) {
     if (port === undef) port = defaultPort;
     if (handlers === undef) handlers = queryHandlers;
     return http.createServer (function (request, response) {
-	var ip = getIP (request);
+	var ip = getIP (request).clientIp;
 	if (allowedIps [ip] === undef) {
 	    responseEnd401 (response);
 	    sendMeAlert ('Unauthorized query from ' + ip + ' : ' + request.url);
