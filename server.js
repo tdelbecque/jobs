@@ -8,6 +8,7 @@ var fs = require ('fs');
 var sendMeMail = require ('./mail').sendMeMail;
 var sendMeAlert = require ('./mail').sendMeAlert;
 var UTILS = require ('./process');
+var cp = require ('child_process');
 
 var undef;
 
@@ -82,6 +83,7 @@ function handleAlert (parameters, response) {
     var msg = parameters.msg || 'Unspecified';
     sendMeMail ('Alert from Thor', msg);
     responseEnd200 (response, 'OK');
+    cp.fork ('./process_audit_lz_newfile')
 }
 
 
