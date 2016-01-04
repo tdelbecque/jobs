@@ -265,10 +265,10 @@ exports.sectorsToHC = sectorsToHC;
 function toTuples (data) {
     var latitudes = data.latitudes || 0;
     var longitudes = data.longitudes || 0;
-    var tuple = flattenArray (zip (data.id, data.locations, data.titles, data.descriptions, data.applyUrl, latitudes, longitudes, data.expiryDate, data.expiryTime, data.nbFlattenSectors, sectorsToHC (data.flattenSectors)).
+    var tuple = flattenArray (zip (data.id, data.locations, data.titles, data.descriptions, data.applyUrl, latitudes, longitudes, sectorsToHC (data.flattenSectors), data.expiryDate, data.expiryTime, data.nbFlattenSectors).
 	map (function (t) {
 	    var x = [];
-	    t [10].forEach (function (y) {x.push (t.slice (0, 10).concat (y))})
+	    t [7].forEach (function (y) {x.push (t.slice (0, 7).concat (y).concat (t.slice (8,11)))})
 	    return x
 	}), 1);
     return tuple;
@@ -284,7 +284,7 @@ function writeTuplesToFile (data, file, daysBeforeExpiry, nbFlattenSectorsUpperB
     var expiryTimeLowerBound = new Date ().getTime () + daysBeforeExpiry * 24*3600000;
     nbFlattenSectorsUpperBound = nbFlattenSectorsUpperBound || defaultNbFlattenSectorsUpperBound;
     var q = function (s) {return '"' + s + '"'};
-    var tuples = toTuples (data).filter (function (x) {return x [8] > expiryTimeLowerBound && x [9] < nbFlattenSectorsUpperBound});
+    var tuples = toTuples (data).filter (function (x) {return x [9] > expiryTimeLowerBound && x [10] < nbFlattenSectorsUpperBound});
     var str = tuples.map (function (x) {
 	return [x [0], q (x [1]), q (x [2]), q (x [3]), q (x [4]), q (x [5]), x [6], x [7], x [8], x [9], x [10]].join ('\t') 
     }).join ('\n');
