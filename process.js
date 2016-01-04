@@ -265,10 +265,10 @@ exports.sectorsToHC = sectorsToHC;
 function toTuples (data) {
     var latitudes = data.latitudes || 0;
     var longitudes = data.longitudes || 0;
-    var tuple = flattenArray (zip (data.id, data.locations, data.titles, data.descriptions, data.applyUrl, latitudes, longitudes, sectorsToHC (data.flattenSectors), data.expiryDate, data.expiryTime, data.nbFlattenSectors).
+    var tuple = flattenArray (zip (data.id, data.locations, data.titles, data.descriptions, data.applyUrl, latitudes, longitudes, sectorsToHC (data.flattenSectors), data.expiryDate, data.expiryTime, data.nbFlattenSectors, data.flattenSectors).
 	map (function (t) {
 	    var x = [];
-	    t [7].forEach (function (y) {x.push (t.slice (0, 7).concat (y).concat (t.slice (8,11)))})
+	    t [7].forEach (function (y) {x.push (t.slice (0, 7).concat (y).concat (t.slice (8,12)))})
 	    return x
 	}), 1);
     return tuple;
@@ -286,7 +286,7 @@ function writeTuplesToFile (data, file, daysBeforeExpiry, nbFlattenSectorsUpperB
     var q = function (s) {return '"' + s + '"'};
     var tuples = toTuples (data).filter (function (x) {return x [9] > expiryTimeLowerBound && x [10] < nbFlattenSectorsUpperBound});
     var str = tuples.map (function (x) {
-	return [x [0], q (x [1]), q (x [2]), q (x [3]), q (x [4]), q (x [5]), x [6], x [7], x [8], x [9], x [10]].join ('\t') 
+	return [x [0], q (x [1]), q (x [2]), q (x [3]), q (x [4]), q (x [5]), x [6], x [7], x [8], x [9], x [10], q(x [11])].join ('\t') 
     }).join ('\n');
     require ('fs').writeFileSync (file, str);
 }
