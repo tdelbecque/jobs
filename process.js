@@ -617,10 +617,15 @@ function createMailBody (header) {
     var body = header;
 
     body = body + "NB ADS : " + data.length + "\n\n";
-    body = body + "GEO LOCATION ISSUES : " + locationIssues.length + "\n\n";
     body = body + "SECTORS TABULATION\n\n";
-    body += x.tablePerFrequency.join ("\n");
-
+    body += x.tablePerFrequency.join ("\n") + "\n\n";
+    body += "GEO LOCATION ISSUES : " + locationIssues.length + " :\n\n";
+    var d = {};
+    locationIssues.forEach (function (x) {
+	if (d [x.location] == undef) {d [x.location] = 1} else {d [x.location] ++}});
+    body += Object.keys (d).
+	map (function (k){return k + "\t" + d [k]}).
+	join ("\n") + "\n";
     return body;
 }
 
