@@ -625,7 +625,17 @@ function createMailBody (header) {
 	if (d [x.location] == undef) {d [x.location] = 1} else {d [x.location] ++}});
     body += Object.keys (d).
 	map (function (k){return k + "\t" + d [k]}).
-	join ("\n") + "\n";
+	join ("\n") + "\n\n";
+
+    d = {};
+    data.forEach (function (x) {return d [x.expiryDate] = x.expiryTime});
+    var sortedDates = Object.keys (d).sort (function (a, b) {return d [a] - d [b]})
+    var t = table (data.map (function (x) {return x.expiryDate}));
+    body += "EXPIRY DATES:\n\n";
+    body += sortedDates.
+	map (function (x) {return x + "\t" + t [x]}).
+	join ('\n') + "\n";
+    
     return body;
 }
 
