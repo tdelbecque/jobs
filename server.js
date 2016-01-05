@@ -135,6 +135,8 @@ process.env.ALLOWED_IPS.
     split (';').
     forEach (function (ip) {allowedIps [ip] = 1});
 
+var unallowedTries = {};
+
 var defaultPort = 8081;
 function createServer (port, handlers) {
     if (port === undef) port = defaultPort;
@@ -143,7 +145,13 @@ function createServer (port, handlers) {
 	var ip = getIP (request).clientIp;
 	if (allowedIps [ip] === undef) {
 	    responseEnd401 (response);
-	    sendMeAlert ('Unauthorized query from ' + ip + ' : ' + request.url);
+	    var signature = ip + new Date ().toDateString ();
+	    if (! unallowedTries [signature]) {
+		sendMeAlert ('Unauthorized query from ' + ip + ' : ' + request.url);
+		unallowedTries [signature] = 1;
+		if (Object.keys (unallowedTries).length > 1000)
+		    unallowedTries = {}
+	    }
 	} else {
 	    var parsedUrl = url.parse (request.url);
 	    var pathname = parsedUrl.pathname;
