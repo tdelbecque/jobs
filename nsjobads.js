@@ -215,19 +215,40 @@ F.prototype = {
     },
 
     requestNSToBing: function (stamp) {
+	var geodb = require ('./geodb').load ();
 	if (stamp === undef) stamp = new Date ().getTime ();
 	var savedir = require ('path').dirname (process.argv [1]) + '/save/';
 	var state = {};
 	var onEnd = function () {
 	    fs.writeFileSync (savedir + 'load-' + stamp + '.js', JSON.stringify (state));
 	    state.data = new UTILS.utils (JSON.parse (state.content.toString ()));
-	    state.locations = S.clusterArrayPerValues (UTILS.zip (state.data.id, state.data.locations));
+	    state.locationsAll = S.clusterArrayPerValues (UTILS.zip (state.data.id, state.data.locations));
+	    state.locations = [];
+	    state.locationsAll.forEach (function (x) {
+		var g = geodb.get (x [1]);
+		if (g === undef)
+		    state.locations.push (x);
+		else
+		    x.push (g.source, g.info);
+	    });
+	    
 	    var onWikiEnd = function () {
-		S.clusteredWikiToData (state.locations, state.data);
+		S.clusteredWikiToData (state.locationsAll, state.data);
 		fs.writeFileSync (savedir + 'data-' + stamp + '.js', JSON.stringify (state.data));
 		UTILS.writeTuplesToFile (state.data, savedir + 'tothor-' + stamp + '.csv');
 		sendMeMail ('Jobs Update',
 			    UTILS.createMailBody ('New update : stamp = ' + stamp + ' ; N = ' + state.data.jobs.length + "\n\n"));
+
+		if (state.locations.filter (function (x) {
+		    return x [3] && x [3].latitude !== undef && x [3].longitude !== undef
+		}).length) {
+		    var geoUpdate = {};
+		    state.locationsAll.forEach (function (x) {
+			if (x [3] && x [3].latitude !== undef && x [3].longitude !== undef)
+			    geoUpdate [x [1]] = {source: x [2], info: x [3]} });
+		    geodb.update (geoUpdate);
+		    geodb.save (stamp)
+		}
 	    }
 	    var onBingEnd = function () {
 		var wikiFound = state.locations.filter (function (x) {return x.length === 3});
