@@ -83,7 +83,7 @@ function handleAlert (parameters, response) {
     var msg = parameters.msg || 'Unspecified';
     sendMeMail ('Alert from Thor', msg);
     responseEnd200 (response, 'OK');
-    if (msg === NEW_FILE_IN_LZ)
+    if (msg === 'NEW_FILE_IN_LZ')
 	cp.fork ('./process_audit_lz_newfile')
 }
 
