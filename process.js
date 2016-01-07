@@ -61,8 +61,11 @@ function utils (fulldata, referenceFile, mode) {
 	    return null
 	}
     }
+    /*
     this.jobs = fulldata.result.jobs.filter (
 	function (x) {return ! x.isExpiring});
+    */
+    this.jobs = fulldata.result.jobs;
     this.categories = this.jobs.map (function (x) {return x.categories});
 
     this.id = this.jobs.map (function (x) {return x.id});
@@ -88,6 +91,7 @@ function utils (fulldata, referenceFile, mode) {
     this.applyUrl = this.jobs.map (function (x) {return x.applyInfo.applyUrl});
     this.expiryDate = this.jobs.map (function (x) {return x.expiryDate});
     this.expiryTime = this.expiryDate.map (function (x) {return new Date (x).getTime ()});
+    this.isExpiring = this.jobs.map (function (x) {return x.isExpiring});
 }
 
 exports.utils = utils;
@@ -515,7 +519,7 @@ function aggregateData () {
     listFile.forEach (function (f) {
 	var data = JSON.parse (fs.readFileSync (savedir + f).toString ());
 	data.id.forEach (function (id, i) {
-	    if (data.expiryTime [i] > timeNow*0)
+	    if (data.expiryTime [i] > timeNow && ! data.isExpiring [i]) 
 		aggregatedData [id] = {
 		    id: id,
 		    nbFlattenSectors: data.nbFlattenSectors [i],
@@ -528,7 +532,9 @@ function aggregateData () {
 		    expiryDate: data.expiryDate [i],
 		    expiryTime: data.expiryTime [i],
 		    latitude: data.latitudes [i] || 0,
-		    longitude: data.longitudes [i] || 0}})});
+		    longitude: data.longitudes [i] || 0}
+	    else delete aggregatedData [id]})});
+    
     return aggregatedData
 }
 
