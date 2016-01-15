@@ -3,7 +3,7 @@
 var sendMeAlert = require ('./mail').sendMeAlert;
 
 process.on('uncaughtException', function (err) {
-    var message = 'uncaughtException in jobs download process: ' +
+    var message = 'uncaughtException in server: ' +
 	err + "\n\n" +
 	err.stack;
     console.error(message);
