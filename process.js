@@ -568,6 +568,44 @@ function asColumns (aggregatedData) {
 exports.asArray = asArray;
 exports.asColumns = asColumns;
 
+/*
+	FEED_JOB_LAYOUT := RECORD 
+		STRING JobId;
+		UNICODE location;
+		UNSIGNED nbFlattenSectors;
+		STRING flattenSectors;
+		UNICODE title;
+		UNICODE description;
+		REAL latitude;
+		REAL longitude;
+		STRING applyUrl;
+		STRING posted;
+		STRING expiryDate;
+		UNSIGNED expiryTime
+	END;
+*/
+
+function asDelimited (array, fields) {
+    if (fields == undef)
+	fields = ['id', 'location', 'nbFlattenSectors', 'flattenSectors',
+		  'title', 'description', 'latitude', 'longitude',
+		  'applyUrl', 'posted', 'expiryDate', 'expiryTime'];
+    var str = '';
+    array.forEach (function (r) {
+	var xs = fields.map (function (f) {return r [f]});
+	str += xs.join ('\t') + "\n";
+    });
+    return str
+}
+
+exports.asDelimited = asDelimited;
+
+function saveAsDelimited (file) {
+    fs.writeFileSync (file, asDelimited (asArray (aggregateData ())))
+}
+
+exports.saveAsDelimited = saveAsDelimited;
+
 function asXML (array, fields) {
     if (fields === undef) fields = Object.keys (array [0]);
     var d = new xmldom.DOMParser ().parseFromString ('<root></root>');
@@ -608,6 +646,23 @@ function HCTuplesAsXML (array) {
 }
 
 exports.HCTuplesAsXML = HCTuplesAsXML;
+
+function HCTuplesAsDelimited (array) {
+    var str = '';
+    array.forEach (function (r) {
+	var headCategories = sectorsToHC (r.flattenSectors.split (';'));
+	headCategories.forEach (function (hc) {
+	    str += r.id + '\t' + hc + '\n'})});
+    return str
+}
+
+exports.HCTuplesAsDelimited = HCTuplesAsDelimited;
+
+function saveHCTuplesAsDelimited (file) {
+    fs.writeFileSync (file, HCTuplesAsDelimited (asArray (aggregateData ())))
+}
+
+exports.saveHCTuplesAsDelimited = saveHCTuplesAsDelimited;
 
 function createMailBody (header) {
     if (header === undef) header = '';
