@@ -3,8 +3,11 @@
 var sendMeAlert = require ('./mail').sendMeAlert;
 
 process.on('uncaughtException', function (err) {
-    console.log(err);
-    sendMeAlert ('uncaughtException : ' + err)
+    var message = 'uncaughtException in jobs download process: ' +
+	err + "\n\n" +
+	err.stack;
+    console.error(message);
+    sendMeAlert (message)
 });
 
 var ja = require ('./nsjobads');
