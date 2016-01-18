@@ -621,7 +621,7 @@ function asDelimited (array, fields) {
 exports.asDelimited = asDelimited;
 
 function saveAsDelimited (file) {
-    fs.writeFileSync (file, asDelimited (asArray (aggregateData ())))
+    fs.writeFileSync (file, asDelimited (asArray (aggregateData (1))))
 }
 
 exports.saveAsDelimited = saveAsDelimited;
@@ -686,7 +686,7 @@ exports.saveHCTuplesAsDelimited = saveHCTuplesAsDelimited;
 
 function createMailBody (header) {
     if (header === undef) header = '';
-    var data = aggregateData ();
+    var data = aggregateData (1);
     data = Object.keys (data).
 	map (function (k) {return data [k]});
     var sectors = data.map (function (x) {return x.flattenSectors.split (';')});
