@@ -517,7 +517,7 @@ function clusteredWikiToData (wiki, data) {
  
 exports.clusteredWikiToData = clusteredWikiToData;
 
-function aggregateData () {
+function aggregateData (patchGeo) {
     var listFile = fs.readdirSync (savedir).
 	filter (function (f) {
 	    return f.indexOf ('data') === 0}).
@@ -546,7 +546,15 @@ function aggregateData () {
 		    latitude: data.latitudes [i] || 0,
 		    longitude: data.longitudes [i] || 0}
 	    else delete aggregatedData [id]})});
-    
+
+    if (patchGeo) {
+	var geodb = require ('./geodb').load ('georeference.js');
+	Object.keys (aggregatedData).forEach (function (id) {
+	    var x = aggregatedData [id];
+	    var y = geodb.get (x.location);
+	    if (y) {
+		x.latitude = sexagesimalToDecimal (y.info.latitude);
+		x.longitude = sexagesimalToDecimal (y.info.longitude) }})}
     return aggregatedData
 }
 
