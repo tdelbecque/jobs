@@ -27,7 +27,7 @@ function GeoDB (reference) {
 	if (lastGeoDB !== undef) {
 	    self.geoDB = JSON.parse (fs.readFileSync (savedir + '/' + lastGeoDB).
 				     toString ())}
-	if (reference !== undef) loadReference (reference);
+	if (reference !== undef) self.loadReference (reference);
     }
     
     this.get = function (location) {
