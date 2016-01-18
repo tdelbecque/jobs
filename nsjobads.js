@@ -215,7 +215,7 @@ F.prototype = {
     },
 
     requestNSToBing: function (stamp) {
-	var geodb = require ('./geodb').load ();
+	var geodb = require ('./geodb').load ('georeference.js');
 	if (stamp === undef) stamp = new Date ().getTime ();
 	var savedir = require ('path').dirname (process.argv [1]) + '/save/';
 	var state = {};
