@@ -466,6 +466,18 @@ function unclusterArray (xs) {
 exports.clusterArrayPerValues = clusterArrayPerValues;
 exports.unclusterArray = unclusterArray;
 
+function deg2rad (d) {
+    return Math.PI * (d / 180)
+}
+
+function distanceOnEarth (lat1, long1, lat2, long2) {
+    var dlat = deg2rad (lat2 - lat1);
+    var dlong = deg2rad (long2 - long1);
+    return 6371 * Math.acos (Math.cos (dlat)*Math.cos(dlong))
+}
+
+exports.distanceOnEarth = distanceOnEarth;
+
 function sexagesimalToDecimal (x) {
     if (x === undef) return undef;
     var y = /(\d+)°(\d+)′(\d+)″(E|W|N|S)/.exec (x) || /(\d+)°(\d+)′(E|W|N|S)/.exec (x) || /(\d+)°(E|W|N|S)/.exec (x) ||
