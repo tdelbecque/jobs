@@ -89,7 +89,7 @@ function handleAlert (parameters, response) {
 
 
 function handleGetXML (parameters, response, transformer) {
-    var data = UTILS.asArray (UTILS.aggregateData ());
+    var data = UTILS.asArray (UTILS.aggregateData (1)); // synchronize with latest geodb
     if (! (data && data.length)) {
 	sendMeAlert ('Unable to build aggregated data');
 	responseEnd200 ('FAILURE');
