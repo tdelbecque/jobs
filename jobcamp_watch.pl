@@ -44,9 +44,11 @@ while (my $file = readdir(DIR)) {
 closedir (DIR);
 
 for (keys %newCampaigns) {
-    system "mv $lzdir$_ $directory$_";
-    system "scp $directory$_ jobs\@$server:lz/$_";
-    system "rm -f $directory$_";
+    #system "mv $lzdir$_ $directory$_";
+    system "gpg --output $directory$_.gpg --encrypt --recipient jobs\@sodad.com $lzdir$_";
+    system "scp $directory$_.gpg jobs\@$server:lz/$_.gpg";
+    system "rm -f $lzdir$_";
+    system "rm -f $directory$_.gpg";
 }
 
 for (keys %newSectorsStats) {
