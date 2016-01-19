@@ -627,8 +627,8 @@ function asDelimited (array, fields) {
 
 exports.asDelimited = asDelimited;
 
-function saveAsDelimited (file) {
-    fs.writeFileSync (file, asDelimited (asArray (aggregateData (1))))
+function saveAsDelimited (file, daysAhead) {
+    fs.writeFileSync (file, asDelimited (asArray (aggregateData (1, daysAhead))))
 }
 
 exports.saveAsDelimited = saveAsDelimited;
@@ -692,8 +692,8 @@ function HCTuplesAsDelimited (array) {
 
 exports.HCTuplesAsDelimited = HCTuplesAsDelimited;
 
-function saveHCTuplesAsDelimited (file) {
-    fs.writeFileSync (file, HCTuplesAsDelimited (asArray (aggregateData ())))
+function saveHCTuplesAsDelimited (file, daysAhead) {
+    fs.writeFileSync (file, HCTuplesAsDelimited (asArray (aggregateData (0, daysAhead))))
 }
 
 exports.saveHCTuplesAsDelimited = saveHCTuplesAsDelimited;
