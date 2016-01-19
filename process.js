@@ -617,8 +617,10 @@ function asDelimited (array, fields) {
     });
 
     return str.
-	replace ('/–/g', '-').
-	replace ('/’/g', "'")
+	replace (/–/g, '-').
+	replace (/’/g, "'").
+	replace (/…/g, '...').
+	replace (/“|”/g, "'")
 }
 
 exports.asDelimited = asDelimited;
@@ -639,8 +641,11 @@ function asXML (array, fields) {
 	    var te = d.createTextNode (r [f] === undef ? 'undef' : r [f].
 				       toString ().
 				       replace (/&/g, '&amp;').
-				       replace ('/–/g', '-').
-				       replace ('/’/g', "'"));
+				       replace (/–/g, '-').
+				       replace (/’/g, "'").
+				       replace (/…/g, '...').
+				       replace (/“|”/g, "'")	       
+				      );
 	    var fe = d.createElement (f);
 	    fe.appendChild (te);
 	    re.appendChild (fe);
