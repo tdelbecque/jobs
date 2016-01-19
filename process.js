@@ -615,7 +615,10 @@ function asDelimited (array, fields) {
 	var xs = fields.map (function (f) {return r [f]});
 	str += xs.join ('\t') + "\n";
     });
-    return str
+
+    return str.
+	replace ('/–/g', '-').
+	replace ('/’/g', "'")
 }
 
 exports.asDelimited = asDelimited;
@@ -633,7 +636,11 @@ function asXML (array, fields) {
     array.forEach (function (r) {
 	var re = d.createElement ('row');
 	fields.forEach (function (f) {
-	    var te = d.createTextNode (r [f] === undef ? 'undef' : r [f].toString ().replace (/&/g, '&amp;'));
+	    var te = d.createTextNode (r [f] === undef ? 'undef' : r [f].
+				       toString ().
+				       replace (/&/g, '&amp;').
+				       replace ('/–/g', '-').
+				       replace ('/’/g', "'"));
 	    var fe = d.createElement (f);
 	    fe.appendChild (te);
 	    re.appendChild (fe);
