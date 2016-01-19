@@ -517,7 +517,7 @@ function clusteredWikiToData (wiki, data) {
  
 exports.clusteredWikiToData = clusteredWikiToData;
 
-function aggregateData (patchGeo) {
+function aggregateData (patchGeo, daysAhead) {
     var listFile = fs.readdirSync (savedir).
 	filter (function (f) {
 	    return f.indexOf ('data') === 0}).
@@ -527,11 +527,13 @@ function aggregateData (patchGeo) {
 	    return ta - tb});
 
     var timeNow = new Date ().getTime ();
+    daysAhead = daysAhead || 0;
+    var lowerTime = timeNow + daysAhead * 24 * 3600 * 1000; 
     var aggregatedData = {};
     listFile.forEach (function (f) {
 	var data = JSON.parse (fs.readFileSync (savedir + f).toString ());
 	data.id.forEach (function (id, i) {
-	    if (data.expiryTime [i] > timeNow && ! data.isExpiring [i]) 
+	    if (data.expiryTime [i] > lowerTime && ! data.isExpiring [i]) 
 		aggregatedData [id] = {
 		    id: id,
 		    nbFlattenSectors: data.nbFlattenSectors [i],
