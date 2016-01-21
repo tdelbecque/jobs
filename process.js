@@ -583,7 +583,7 @@ function asColumns (aggregatedData) {
 	expiryDate: ids.map (function (id) {return aggregatedData [id].expiryDate}),
 	expiryTime: ids.map (function (id) {return aggregatedData [id].expiryTime}),
 	latitudes: ids.map (function (id) {return aggregatedData [id].latitude || 0}),
-	longitudes: ids.map (function (id) {return aggregatedData [id].longitudes || 0})
+	longitudes: ids.map (function (id) {return aggregatedData [id].longitude || 0})
     }
 }
 
