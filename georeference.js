@@ -25,6 +25,22 @@
 	    "latitude": "51°30′26″N"
 	}
     },
+    "South West London": {
+	"source": "https://en.wikipedia.org/wiki/London",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°7′39″W",
+	    "latitude": "51°30′26″N"
+	}
+    },    
+    "Various locations, UK": {
+	"source": "https://en.wikipedia.org/wiki/London",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°7′39″W",
+	    "latitude": "51°30′26″N"
+	}
+    },
     "GBR": {
 	"source": "https://en.wikipedia.org/wiki/London",
 	"info": {
@@ -72,7 +88,15 @@
 	    "longitude": "0°0′1″E",
 	    "latitude": "52°20′0″N"
 	}
-    },    
+    },
+    "Hinxton, nr Cambridge, UK": {
+	"source": "https://en.wikipedia.org/wiki/Cambridgeshire",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°0′1″E",
+	    "latitude": "52°20′0″N"
+	}
+    },
     "USA - Ohio": {
 	"source": "https://en.wikipedia.org/wiki/Columbus,_Ohio",
 	"info": {
@@ -137,6 +161,14 @@
 	    "latitude": "35°7′2.51″N"
 	}
     },
+    "Metro - NY City": {
+	"source": "https://en.wikipedia.org/wiki/New_York_City",
+	"info": {
+	    "countries": ["USA"],
+	    "longitude": "74°0′21.24″W",
+	    "latitude": "40°42′45.72″N"
+	}
+    },
     "USA": {
 	"source": "https://en.wikipedia.org/wiki/United_States",
 	"info": {
@@ -144,6 +176,21 @@
 	    "longitude": "100°0′0″W",
 	    "latitude": "40°0′0″N"
 	}
-    }    
+    },
+    "SWE": {
+	"source": "https://en.wikipedia.org/wiki/Stockholm",
+	"info": {
+	    "countries": ["Sweden"],
+	    "longitude": "18°4′7″E",
+	    "latitude": "59°19′46″N"
+	}
+    },
+    "SGP": {
+	"source": "https://en.wikipedia.org/wiki/Singapore",
+	"info": {
+	    "countries": ["Singapore"],
+	    "longitude": "103°48′0″E",
+	    "latitude": "1°18′0″N"
+	}
+    }
 }
-
