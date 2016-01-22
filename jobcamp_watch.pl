@@ -45,8 +45,14 @@ closedir (DIR);
 
 for (keys %newCampaigns) {
     #system "mv $lzdir$_ $directory$_";
+    my $diagnosticFile = $_;
+    $diagnosticFile =~ s/M_/Diagnostic_/;
+    system "wc -l $lzdir$_ > $directory$diagnosticFile";
+    system "file $lzdir$_ >> $directory$diagnosticFile";
     system "gpg --output $directory$_.gpg --encrypt --recipient jobs\@sodad.com $lzdir$_";
     system "scp $directory$_.gpg jobs\@$server:lz/$_.gpg";
+    system "scp $directory$diagnosticFile jobs\@$server:lz/$diagnosticFile";
+    system "rm -f $directory$diagnosticFile";
     system "rm -f $lzdir$_";
     system "rm -f $directory$_.gpg";
 }
