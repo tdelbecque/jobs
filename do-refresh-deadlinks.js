@@ -11,7 +11,9 @@ process.on('uncaughtException', function (err) {
 });
 
 var m = require ('./checkAlive')
-var deadLinksFile = '/home/thierry/jobs/save/deadLinks'
+var rootdir = require ('path').dirname (process.argv [1]);
+var savedir = rootdir + '/save';
+var deadLinksFile = savedir + '/deadLinks'
 
 m.getDeadLinks (deadLinksFile)
 
