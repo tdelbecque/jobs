@@ -192,5 +192,14 @@
 	    "longitude": "103°48′0″E",
 	    "latitude": "1°18′0″N"
 	}
+    },
+    "Portishead": {
+	"source": "https://en.wikipedia.org/wiki/Portishead,_Somerset",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "2°45′45.36″W",
+	    "latitude": "51°29′2.4″N"
+	}
     }
+    
 }
