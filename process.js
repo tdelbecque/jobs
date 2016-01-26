@@ -517,7 +517,25 @@ function clusteredWikiToData (wiki, data) {
  
 exports.clusteredWikiToData = clusteredWikiToData;
 
-function aggregateData (patchGeo, daysAhead) {
+function getDeadLinks () {
+    var rootdir = require ('path').dirname (process.argv [1]);
+    var savedir = rootdir + '/save';
+    var deadLinksFile = savedir + '/deadLinks'
+    var deadLinks = {}
+    try {
+	var str = fs.readFileSync (deadLinksFile).toString ()
+	var urls = JSON.parse (str)
+	urls.forEach (function (url) {deadLinks [url] = 1})
+    }
+    catch (e) {
+	console.error (e)
+	deadLinks = {}
+    }
+    return deadLinks
+}
+
+function aggregateData (patchGeo, daysAhead, acceptDeadLinks) {
+    var deadLinks = acceptDeadLinks ? {} : getDeadLinks ()
     var listFile = fs.readdirSync (savedir).
 	filter (function (f) {
 	    return f.indexOf ('data') === 0}).
@@ -533,7 +551,9 @@ function aggregateData (patchGeo, daysAhead) {
     listFile.forEach (function (f) {
 	var data = JSON.parse (fs.readFileSync (savedir + f).toString ());
 	data.id.forEach (function (id, i) {
-	    if (data.expiryTime [i] > lowerTime && ! data.isExpiring [i]) 
+	    if (data.expiryTime [i] > lowerTime &&
+		! data.isExpiring [i] &&
+		! deadLinks [data.applyUrl [i]]) 
 		aggregatedData [id] = {
 		    id: id,
 		    nbFlattenSectors: data.nbFlattenSectors [i],
