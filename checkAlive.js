@@ -72,7 +72,7 @@ function getDeadLinks (fileout) {
 	    process.stdout.write (str)
     }
     
-    var urls = UTILS.asColumns (UTILS.aggregateData (false, 0)).
+    var urls = UTILS.asColumns (UTILS.aggregateData (false, 0, 1)).
 	applyUrl.
 	map (function (x) {return {url: x}})
     checkIth (urls, 0, whenFinish);
