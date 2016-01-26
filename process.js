@@ -80,7 +80,7 @@ function utils (fulldata, referenceFile, mode) {
     this.nbHasSectors = (this.hasSectors.length && this.hasSectors.reduce (add)) || 0;
     this.flattenSectors = this.sectors.map (flattenSectors);
     this.nbFlattenSectors = this.flattenSectors.map (getLength);
-    this.locations = this.jobs.map (function (x) {return x.location});
+    this.locations = this.jobs.map (function (x) {return x.location.trim ()});
     this.nbLocations = this.locations.map (getLength);
     this.hasLocations = this.nbLocations.map (hasFeature);
     this.nbHasLocations = (this.hasLocations.length && this.hasLocations.reduce (add)) || 0;
