@@ -10,6 +10,8 @@ process.on('uncaughtException', function (err) {
     console.error(message);
 });
 
+var undef
+
 function digest (path, onFinish) {
     var self = this || {}
 
@@ -51,7 +53,7 @@ function digest (path, onFinish) {
 
 exports.digest = function (path) {return new digest (path)}
 
-function analyse (filein, onFinish) {
+function analyse (filein, testDeadLinks, onFinish) {
     function onDigestFinish (dg) {
 	var jobsdb = EXPORT.aggregateData ()
 	var extractfun = jobsdb.extractfun
@@ -95,8 +97,18 @@ function analyse (filein, onFinish) {
 	    map (tableRowBuilder ([1,2,3].map (feat ('sectorsTable')).concat ([allSectorsTable])))
 
 	dg.jobIdTable = UTILS.table (dg.job1_ids.concat (dg.job2_ids.concat (dg.job3_ids)))
-				     
-	if (onFinish) onFinish (dg)
+	dg.applyUrls = Object.keys (dg.jobIdTable).map (function (id) {return jobsdb [id].applyUrl})
+
+	dg.jobsdb = jobsdb
+	
+	if (testDeadLinks) 
+	    require ('./checkAlive').getDeadLinks2 (
+		dg.applyUrls . concat (["http://dummy.com/dummy"]),
+		function (deadLinks) {
+		    dg.deadLinks = deadLinks
+		    if (onFinish) onFinish (dg) })
+	else 
+	    if (onFinish) onFinish (dg)
     }
     
     try {
@@ -116,6 +128,7 @@ if (!module.parent) {
     }
 
     function onFinish (dg) {
+
  	function toString (x) {
 	    return x.map (function (x) {return x.join ('\t')}).join ('\n')}
 
@@ -125,13 +138,16 @@ if (!module.parent) {
 	    slice (0, 10).
 	    forEach (function (id) {console.log (id + '\t' + dg.jobIdTable [id])})
 	
+	if (dg.deadLinks !== undef) {
+	    console.log ('\nDead links:')
+	    dg.deadLinks.forEach (function (l) {console.log (l)})
+	}
 	console.log ('\nExpiry dates')
 	console.log (toString (dg.expiryDatesSpreadSheet))
 	console.log ('\nSectors')
 	console.log (toString (dg.sectorsSpreadSheet))
-   }
-    
+    }
     var filein = process.argv [2]
 
-    analyse (filein, onFinish)
+    analyse (filein, true, onFinish)
 }
