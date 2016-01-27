@@ -103,7 +103,7 @@ function analyse (filein, testDeadLinks, onFinish) {
 	
 	if (testDeadLinks) 
 	    require ('./checkAlive').getDeadLinks2 (
-		dg.applyUrls . concat (["http://dummy.com/dummy"]),
+		dg.applyUrls . concat (["http://www.test-this-dymmy-dead-link.com/"]),
 		function (deadLinks) {
 		    dg.deadLinks = deadLinks
 		    if (onFinish) onFinish (dg) })
