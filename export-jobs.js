@@ -13,7 +13,13 @@ function aggregateData () {
 	    var tb = 1*(/.*?(\d+)/.exec (b) [1]);
 	    return ta - tb});
 
-    var aggregatedData = {};
+    var aggregatedData = {
+	extractfun: function (field) {
+	    return function (key, i, o) {
+		return aggregatedData [key][field]
+	    }
+	}
+    };
     listFile.forEach (function (f) {
 	var data = JSON.parse (fs.readFileSync (savedir + f).toString ());
 	data.id.forEach (function (id, i) {
@@ -40,6 +46,8 @@ function aggregateData () {
 	    x.longitude = p.sexagesimalToDecimal (y.info.longitude) }})
     return aggregatedData
 }
+
+exports.aggregateData = aggregateData
 
 function exportSnapshort (prefix) {
     var data = p.asArray (aggregateData ())
