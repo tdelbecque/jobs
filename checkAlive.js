@@ -79,3 +79,17 @@ function getDeadLinks (fileout) {
 }
 
 exports.getDeadLinks = getDeadLinks;
+
+function getDeadLinks2 (linksToTest, whenFinish) {
+    function whenFinishInner (list) {
+	var deadLinks = list.
+	    filter (function (x) {return x.error !== null}).
+	    map (function (x) {return x.url})
+	whenFinish (deadLinks)
+    }
+    
+    var urls = linksToTest.map (function (x) {return {url: x}})
+    checkIth (urls, 0, whenFinishInner);
+}
+
+exports.getDeadLinks2 = getDeadLinks2;
