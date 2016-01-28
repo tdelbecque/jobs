@@ -4,7 +4,7 @@ use strict;
 use diagnostics;
 
 while (<>) {
-    s!<UID.*<JOBSECTORS>(.*?)<.*?</TZ>!$1!;
+    s!<EXTRA>.*<JOBSECTORS>(.*?)<.*?/EXTRA>!$1!;
     s/&amp;/&/g;
     print
 }
