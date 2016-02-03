@@ -32,7 +32,15 @@
 	    "longitude": "0°7′39″W",
 	    "latitude": "51°30′26″N"
 	}
-    },    
+    },
+    "City of Westminster, London, SW1W 9SZ": {
+	"source": "https://en.wikipedia.org/wiki/London",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°7′39″W",
+	    "latitude": "51°30′26″N"
+	}
+    },
     "Various locations, UK": {
 	"source": "https://en.wikipedia.org/wiki/London",
 	"info": {
@@ -95,6 +103,62 @@
 	    "countries": ["England"],
 	    "longitude": "0°0′1″E",
 	    "latitude": "52°20′0″N"
+	}
+    },
+    "Birmingham, West Midlands": {
+	"source": "https://fr.wikipedia.org/wiki/Birmingham",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "1°53′37″W",
+	    "latitude": "52°28′59″N"
+	}
+    },
+    "Midlands, UK": {
+	"source": "https://fr.wikipedia.org/wiki/Birmingham",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "1°53′37″W",
+	    "latitude": "52°28′59″N"
+	}
+    },
+    "Midlands": {
+	"source": "https://fr.wikipedia.org/wiki/Birmingham",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "1°53′37″W",
+	    "latitude": "52°28′59″N"
+	}
+    },
+    "Midlands - England": {
+	"source": "https://fr.wikipedia.org/wiki/Birmingham",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "1°53′37″W",
+	    "latitude": "52°28′59″N"
+	}
+    },
+    "Sussex, UK": {
+	"source": "https://en.wikipedia.org/wiki/Sussex",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°0′0″E",
+	    "latitude": "51°0′0″N"
+	}
+    },
+    "Yorkshire": {
+	"source": "https://en.wikipedia.org/wiki/Yorkshire",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "2°0′0″W",
+	    "latitude": "54°0′0″N"
+	}
+    },
+    "Vienna (Statutarstadt) (AT)": {
+	"source": "https://en.wikipedia.org/wiki/Vienna",
+	"info": {
+	    "countries": ["Austria"],
+	    "longitude": "16°22′0″E",
+	    "latitude": "48°12′0″N"
 	}
     },
     "USA - Ohio": {
@@ -175,6 +239,22 @@
 	    "countries": ["USA"],
 	    "longitude": "100°0′0″W",
 	    "latitude": "40°0′0″N"
+	}
+    },
+    "Washington": {
+	"source": "https://fr.wikipedia.org/wiki/Washington_%28district_de_Columbia%29",
+	"info": {
+	    "countries": ["USA"],
+	    "longitude": "77°2′11.64″W",
+	    "latitude": "38°53′42.37″N"
+	}
+    },
+    "District of Columbia": {
+	"source": "https://fr.wikipedia.org/wiki/Washington_%28district_de_Columbia%29",
+	"info": {
+	    "countries": ["USA"],
+	    "longitude": "77°2′11.64″W",
+	    "latitude": "38°53′42.37″N"
 	}
     },
     "SWE": {
