@@ -90,28 +90,33 @@ function handleAlert (parameters, response) {
 
 function handleGetXML (parameters, response, transformer) {
     var daysAhead = 3
-    var data = UTILS.asArray (UTILS.aggregateData (1,daysAhead)); // synchronize with latest geodb
+    var aggregatedData = UTILS.aggregateData (1,daysAhead) // synchronize with latest geodb
+    var validator = new UTILS.validatorForGeo ()
+    validator.validate (aggregatedData);
+    
+    var data = UTILS.asArray (validator.valids)
+
     if (! (data && data.length)) {
 	sendMeAlert ('Unable to build aggregated data');
-	responseEnd200 ('FAILURE');
+	responseEnd200 (response, 'FAILURE');
 	return;
     }
     var xmldata = transformer (data);
     if (! xmldata) {
 	sendMeAlert ('Unable to build XML load');
-	responseEnd200 ('FAILURE');
+	responseEnd200 (response, 'FAILURE');
 	return;
     }
     var load = /<root>(.*)<\/root>/.exec (xmldata.toString ()) [1];
     if (! (load && typeof load === 'string' && load.length)) {
 	sendMeAlert ('Unable to build XML load');
-	responseEnd200 ('FAILURE');
+	responseEnd200 (response, 'FAILURE');
 	return;
     }
     load = encode (load);
     if (load.length > 9999000) {
 	sendMeAlert ('Load too big (size = ' + load.length + ')');
-	responseEnd200 ('FAILURE');
+	responseEnd200 (response, 'FAILURE');
 	return;
     }
     responseEnd200 (response, load);
