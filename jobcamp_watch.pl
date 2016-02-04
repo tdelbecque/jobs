@@ -12,6 +12,7 @@ my %currentSectorsStats = ();
 my %currentJobsFreqs = ();
 my %currentJobsHist = ();
 my %currentParameters = ();
+my %currentJobs = ();
 
 opendir (DIR, $directory) or die $!;
 
@@ -22,6 +23,7 @@ while (my $file = readdir(DIR)) {
     $file =~ /jobsfreqs-\d+\.csv$/ and $currentJobsFreqs {$file} = 1;
     $file =~ /jobshist-\d+\.csv$/ and $currentJobsHist {$file} = 1;
     $file =~ /parameters-\d+\.csv$/ and $currentParameters {$file} = 1;
+    $file =~ /jobsdenorm-\d+\.csv$/ and $currentJobs {$file} = 1;
 }
 
 closedir (DIR);
@@ -32,6 +34,7 @@ my %newSectorsStats = ();
 my %newJobsFreqs = ();
 my %newJobsHist = ();
 my %newParameters = ();
+my %newJobs = ();
 
 my $lzdir = '/var/landingzone/epfl_lz/download/campaigns/';
 opendir (DIR, $lzdir) or die $!;
@@ -43,6 +46,7 @@ while (my $file = readdir(DIR)) {
     $file =~ /jobsfreqs-\d+\.csv$/ and ! $currentJobsFreqs {$file} and $newJobsFreqs {$file} = 1;
     $file =~ /jobshist-\d+\.csv$/ and ! $currentJobsHist {$file} and $newJobsHist {$file} = 1;
     $file =~ /parameters-\d+\.csv$/ and ! $currentParameters {$file} and $newParameters {$file} = 1;
+    $file =~ /jobsdenorm-\d+\.csv$/ and ! $currentJobs {$file} and $newJobs {$file} = 1;
 }
 
 closedir (DIR);
@@ -89,6 +93,11 @@ for (keys %newParameters) {
     system "mv $lzdir$_ $directory$_";
     system "scp $directory$_ jobs\@$server:lz/$_";
     system "rm -f $directory$_";
+}
+
+for (keys %newJobs) {
+    system "scp $lzdir$_ jobs\@$server:lz/$_";
+    system "rm -f $lzdir$_";
 }
 
 sub notify {
