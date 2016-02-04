@@ -81,7 +81,7 @@ function getFresherFileSync (directory, filter) {
     var fileList = fs.readdirSync (directory);
     if (filter !== undef) fileList = fileList.filter (filter);
     fileList.forEach (function (f) {
-	var t = new Date (fs.statSync (directory + '/' + f).ctime).getTime ();
+	var t = new Date (fs.statSync (directory + '/' + f).mtime).getTime ();
 	if (t > n) {
 	    n = t;
 	    fresherFile = f}});
