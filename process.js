@@ -582,6 +582,31 @@ function aggregateData (patchGeo, daysAhead, acceptDeadLinks) {
 
 exports.aggregateData = aggregateData;
 
+function validatorForGeo (previousValidator) {
+    var self = this || {}
+    if (previousValidator) {
+	self.valids = previousValidator.valids
+	self.invalids = previousValidator.invalids
+    } else {
+	self.valids = {}
+	self.invalids = {}
+    }
+
+    self.validate = function (data) {
+	if (previousValidator) previousValidator.validate (data);
+	Object.keys (data).forEach (function (k) {
+	    var x = data [k]
+	    if (isNaN (x.latitude + x.longitude))
+		self.invalids [k] = x
+	    else
+		self.valids [k] = x
+	})
+	return this === undef ? {valids: self.valids, invalids: self.invalids} : undef
+    }
+}
+
+exports.validatorForGeo = validatorForGeo;
+    
 function asArray (aggregatedData) {
     var ids = Object.keys (aggregatedData);
     var ret = [];
@@ -725,12 +750,12 @@ exports.saveHCTuplesAsDelimited = saveHCTuplesAsDelimited;
 
 function createMailBody (header) {
     if (header === undef) header = '';
-    var data = aggregateData (1);
+    var data = aggregateData (1, 0);
     data = Object.keys (data).
 	map (function (k) {return data [k]});
     var sectors = data.map (function (x) {return x.flattenSectors.split (';')});
 
-    var locationIssues = data.filter (function (x) {return x.latitude === 0 || x.longitude === 0});
+    var locationIssues = data.filter (function (x) {return isNaN (x.latitude + x.longitude) || x.latitude === 0 || x.longitude === 0});
     
     var x = {};
     tabulate.call (x, sectors);
@@ -739,12 +764,14 @@ function createMailBody (header) {
     body = body + "NB ADS : " + data.length + "\n\n";
     body = body + "SECTORS TABULATION\n\n";
     body += x.tablePerFrequency.join ("\n") + "\n\n";
+
+    var g = require ('./geodb').load ()
     body += "GEO LOCATION ISSUES : " + locationIssues.length + " :\n\n";
     var d = {};
     locationIssues.forEach (function (x) {
 	if (d [x.location] == undef) {d [x.location] = 1} else {d [x.location] ++}});
     body += Object.keys (d).
-	map (function (k){return k + "\t" + d [k]}).
+	map (function (k){return k + "\t" + d [k] + (g.get (k) ? '*' : '')}).
 	join ("\n") + "\n\n";
 
     d = {};
