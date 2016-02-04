@@ -290,5 +290,103 @@
 	    "longitude": "70°55′50″W",
 	    "latitude": "42°34′30″N"
 	}
+    },
+    "Ann Arbor, US": {
+	"source": "https://en.wikipedia.org/wiki/Ann_Arbor,_Michigan",
+	"info": {
+	    "countries": [
+		"United States"
+	    ],
+	    "longitude": "83°44′54″W",
+	    "latitude": "42°16′53″N"
+	}
+    },
+    "Ann Arbor Michigan": {
+	"source": "https://en.wikipedia.org/wiki/Ann_Arbor,_Michigan",
+	"info": {
+	    "countries": [
+		"United States"
+	    ],
+	    "longitude": "83°44′54″W",
+	    "latitude": "42°16′53″N"
+	}
+    },
+    "North West England, England": {
+	"source": "https://en.wikipedia.org/wiki/North_West_England",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "2°38′00″W",
+	    "latitude": "54°01′00″N"
+	}
+    },
+    "North West England": {
+	"source": "https://en.wikipedia.org/wiki/North_West_England",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "2°38′00″W",
+	    "latitude": "54°01′00″N"
+	}
+    },
+    "North West England (GB)": {
+	"source": "https://en.wikipedia.org/wiki/North_West_England",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "2°38′00″W",
+	    "latitude": "54°01′00″N"
+	}
+    },
+    "Kingston Upon Hull, England": {
+	"source": "https://en.wikipedia.org/wiki/Kingston_upon_Hull",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "0°19′57″W",
+	    "latitude": "53°44′39.6″N"
+	}
+    },
+    "Kingston upon Hull, East Riding of Yorkshire (GB)": {
+	"source": "https://en.wikipedia.org/wiki/Kingston_upon_Hull",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "0°19′57″W",
+	    "latitude": "53°44′39.6″N"
+	}
+    },
+    "Leek": {
+	"source": "https://en.wikipedia.org/wiki/Laken",
+	"info": {
+	    "countries": ["Belgium"],
+	    "longitude": "4°21′0″E",
+	    "latitude": "50°52′0″N"
+	}
+    },
+    "China": {
+	"source": "https://en.wikipedia.org/wiki/China",
+	"info": {
+	    "countries": [
+		"\n\n\nBrazil\nCanada\nEstonia\nFrance\nIndia\nNetherlands\nNew Zealand\nPakistan\nUnited Kingdom\nUnited States\n\n\n"
+	    ],
+	    "longitude": "103°E",
+	    "latitude": "35°N"
+	}
+    },
+    "Sussex, UK": {
+	"source": "https://en.wikipedia.org/wiki/Sussex",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "0°0′1″E",
+	    "latitude": "51°0′0″N"
+	}
     }
 }
