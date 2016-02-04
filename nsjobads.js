@@ -236,8 +236,6 @@ F.prototype = {
 		S.clusteredWikiToData (state.locationsAll, state.data);
 		fs.writeFileSync (savedir + 'data-' + stamp + '.js', JSON.stringify (state.data));
 		UTILS.writeTuplesToFile (state.data, savedir + 'tothor-' + stamp + '.csv');
-		sendMeMail ('Jobs Update',
-			    UTILS.createMailBody ('New update : stamp = ' + stamp + ' ; N = ' + state.data.jobs.length + "\n\n"));
 
 		if (state.locations.filter (function (x) {
 		    return x [3] && x [3].latitude !== undef && x [3].longitude !== undef
@@ -249,6 +247,10 @@ F.prototype = {
 		    geodb.update (geoUpdate);
 		    geodb.save (stamp)
 		}
+
+		sendMeMail ('Jobs Update',
+			    UTILS.createMailBody ('New update : stamp = ' + stamp + ' ; N = ' + state.data.jobs.length + "\n\n"));
+
 	    }
 	    var onBingEnd = function () {
 		var wikiFound = state.locations.filter (function (x) {return x.length === 3});
