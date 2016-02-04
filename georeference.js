@@ -280,6 +280,15 @@
 	    "longitude": "2°45′45.36″W",
 	    "latitude": "51°29′2.4″N"
 	}
+    },
+    "Danvers, Massachusetts": {
+	"source": "https://en.wikipedia.org/wiki/Danvers,_Massachusetts",
+	"info": {
+	    "countries": [
+		"United States"
+	    ],
+	    "longitude": "70°55′50″W",
+	    "latitude": "42°34′30″N"
+	}
     }
-    
 }
