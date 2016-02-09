@@ -669,6 +669,7 @@ function asDelimited (array, fields) {
 	replace (/…/g, '...').
 	replace (/“|”/g, "'").
 	replace (/•/g, '').
+	replace (/‘/g, "'").
 	replace (/[\x00-\x1f]/g, '')
 	
 }
@@ -696,6 +697,7 @@ function asXML (array, fields) {
 				       replace (/…/g, '...').
 				       replace (/“|”/g, "'").
 				       replace (/•/g, '').
+				       replace (/‘/g, "'").
 				       replace (/[\x00-\x1f]/g, '')
 				      );
 	    var fe = d.createElement (f);
