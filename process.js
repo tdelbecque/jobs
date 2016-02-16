@@ -558,10 +558,10 @@ function aggregateData (patchGeo, daysAhead, acceptDeadLinks) {
 		    id: id,
 		    nbFlattenSectors: data.nbFlattenSectors [i],
 		    flattenSectors: data.flattenSectors [i].join (';'),
-		    location: data.locations [i],
+		    location: data.locations [i].trim (),
 		    title: data.titles [i],
 		    posted: data.posted [i],
-		    description: data.descriptions [i],
+		    description: data.descriptions [i].trim (),
 		    applyUrl: data.applyUrl [i],
 		    expiryDate: data.expiryDate [i],
 		    expiryTime: data.expiryTime [i],
@@ -670,6 +670,7 @@ function asDelimited (array, fields) {
 	replace (/“|”/g, "'").
 	replace (/•/g, '').
 	replace (/‘/g, "'").
+	replace (/€/g, "(Euro)").
 	replace (/[\x00-\x1f]/g, '')
 	
 }
@@ -698,6 +699,7 @@ function asXML (array, fields) {
 				       replace (/“|”/g, "'").
 				       replace (/•/g, '').
 				       replace (/‘/g, "'").
+				       replace (/€/g, "(Euro)").
 				       replace (/[\x00-\x1f]/g, '')
 				      );
 	    var fe = d.createElement (f);
