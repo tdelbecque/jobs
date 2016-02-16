@@ -311,6 +311,16 @@
 	    "latitude": "42°16′53″N"
 	}
     },
+    "Ann Arbor, Michigan": {
+	"source": "https://en.wikipedia.org/wiki/Ann_Arbor,_Michigan",
+	"info": {
+	    "countries": [
+		"United States"
+	    ],
+	    "longitude": "83°44′54″W",
+	    "latitude": "42°16′53″N"
+	}
+    },
     "North West England, England": {
 	"source": "https://en.wikipedia.org/wiki/North_West_England",
 	"info": {
@@ -388,5 +398,41 @@
 	    "longitude": "0°0′1″E",
 	    "latitude": "51°0′0″N"
 	}
-    }
+    },
+    "Neuchâtel": {
+	"source": "https://en.wikipedia.org/wiki/Neuchatel_NE",
+	"info": {
+	    "countries": [
+		"Switzerland"
+	    ],
+	    "longitude": "6°56′E",
+	    "latitude": "47°0′N"
+	}
+    },
+    "Dusseldorf": {
+	"source": "https://en.wikipedia.org/wiki/D%C3%BCsseldorf",
+	"info": {
+	    "countries": ["Germany"],
+	    "longitude": "6°47′0″E",
+	    "latitude": "51°14′0″N"
+	}
+    },
+    "Europe": {
+	"source": "",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°7′39″W",
+	    "latitude": "51°30′26″N"
+	}
+    },
+    "Northern England": {
+	"source": "https://en.wikipedia.org/wiki/North_West_England",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "2°38′00″W",
+	    "latitude": "54°01′00″N"
+	}
+    }    
 }
