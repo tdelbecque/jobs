@@ -33,6 +33,14 @@
 	    "latitude": "51°30′26″N"
 	}
     },
+    "London, SW": {
+	"source": "https://en.wikipedia.org/wiki/London",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°7′39″W",
+	    "latitude": "51°30′26″N"
+	}
+    },
     "City of Westminster, London, SW1W 9SZ": {
 	"source": "https://en.wikipedia.org/wiki/London",
 	"info": {
@@ -434,5 +442,25 @@
 	    "longitude": "2°38′00″W",
 	    "latitude": "54°01′00″N"
 	}
-    }    
+    },
+    "Munich (Landkreis), Bayern (DE)": {
+	"source": "https://en.wikipedia.org/wiki/Munich",
+	"info": {
+	    "countries": [
+		"Germany"
+	    ],
+	    "longitude": "11°34′0″E",
+	    "latitude": "48°8′0″N"
+	}
+    },
+    "Belfast (City/Town) (GB)": {
+	"source": "https://en.wikipedia.org/wiki/Belfast",
+	"info": {
+	    "countries": [
+		"Irland"
+	    ],
+	    "longitude": "5°55′48″W",
+	    "latitude": "54°35′49.2″N"
+	}
+    }
 }
