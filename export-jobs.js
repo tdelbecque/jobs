@@ -70,3 +70,30 @@ function exportSnapshort (prefix) {
 }
 
 exports.exportSnapshort = exportSnapshort
+
+function jobsByIdsFile (idsfile) {
+    var data = aggregateData ()
+    var jobs= fs.readFileSync (idsfile).toString ().split ('\n').
+	map (function (i) {return data [i]}).
+	filter (function (x) {return x !== undef})
+    return jobs
+}
+
+exports.jobsByIdsFile = jobsByIdsFile;
+
+function writeJobs (jobs, file) {
+    var header = 'id\tsectors\tlatitude\tlongitude\n'
+    var str = jobs.map (function (x) {return [x.id, x.flattenSectors, x.latitude, x.longitude].join ('\t')}).join ('\n')
+    fs.writeFileSync (file, header + str)
+}
+
+exports.writeJobs = writeJobs;
+
+function doExports () {
+    var x = m.jobsByIdsFile ('../campaigns/current/jobids-C3')
+    m.writeJobs (x, 'jobs-C3.tsv')
+    x = m.jobsByIdsFile ('../campaigns/20160201/jobids-C2')
+    m.writeJobs (x, 'jobs-C2.tsv')
+    x = m.jobsByIdsFile ('../campaigns/20160126/jobids-C1')
+    m.writeJobs (x, 'jobs-C1.tsv')
+}
