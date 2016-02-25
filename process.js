@@ -578,7 +578,11 @@ function aggregateData (patchGeo, daysAhead, acceptDeadLinks) {
 	    if (y) {
 		x.latitude = sexagesimalToDecimal (y.info.latitude)
 		x.longitude = sexagesimalToDecimal (y.info.longitude)
-		x.countryCode = y.countryCode }})}
+		x.countryCode = y.countryCode
+	    } else {
+		x.countryCode = 'XXX'
+	    }
+	})}
     return aggregatedData
 }
 
