@@ -1,5 +1,6 @@
 var fs = require ('fs')
 var https = require ('https')
+var http = require ('http')
 var p = require ('./process')
 var utils = require ('./utils')
 
