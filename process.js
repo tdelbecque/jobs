@@ -570,13 +570,15 @@ function aggregateData (patchGeo, daysAhead, acceptDeadLinks) {
 	    else delete aggregatedData [id]})});
 
     if (patchGeo) {
-	var geodb = require ('./geodb').load ('georeference.js');
+//	var geodb = require ('./geodb').load ('georeference.js');
+	var geodb = require ('./ctrdb').load ('ctrreference.js');
 	Object.keys (aggregatedData).forEach (function (id) {
 	    var x = aggregatedData [id];
 	    var y = geodb.get (x.location);
 	    if (y) {
-		x.latitude = sexagesimalToDecimal (y.info.latitude);
-		x.longitude = sexagesimalToDecimal (y.info.longitude) }})}
+		x.latitude = sexagesimalToDecimal (y.info.latitude)
+		x.longitude = sexagesimalToDecimal (y.info.longitude)
+		x.countryCode = y.countryCode }})}
     return aggregatedData
 }
 
