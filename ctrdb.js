@@ -20,10 +20,13 @@ function CtrDB (reference) {
 	var lastCtrDB = utils.getFresherFileSync (
 	    savedir,
 	    function (f) {return /ctrdb-\d+\.json/.exec (f)});
-	
+	var tmpDB
 	if (lastCtrDB !== undef) {
-	    self.ctrDB = JSON.parse (fs.readFileSync (savedir + '/' + lastCtrDB).
-				     toString ())}
+	    tmpDB = JSON.parse (fs.readFileSync (savedir + '/' + lastCtrDB).
+				toString ())
+	    Object.keys (tmpDB).forEach (function (l) {self.ctrDB [l.trim ()] = tmpDB [l]})
+	}
+	
 	if (reference !== undef) self.loadReference (reference);
     }
     
