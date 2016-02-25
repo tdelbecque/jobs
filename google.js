@@ -104,7 +104,7 @@ function syncCountries () {
 	forEach (function (x) {toUpdateDic [x] = currentGeoDic [x]})
 
     var countryCodes2to3 = {}
-    fs.readFileSync ('countryCodes.csv').
+    fs.readFileSync (rootdir + '/countryCodes.csv').
 	toString ().
 	split ('\r\n').
 	filter (function (x) {return x !== ''}).
