@@ -111,7 +111,7 @@ function syncCountries () {
 
     whenFinish = function (db) {
 	Object.keys (db).forEach (function (x) {currentCtrDic [x] = db [x]})
-	fs.writeFileSync (savedir + '/' + 'ctrdb-' + stamp + '.json', JSON.stringify (currentCtrDic))
+	fs.writeFileSync (savedir + '/' + 'ctrdb-' + stamp + '.json', JSON.stringify (currentCtrDic, null, '\t'))
 	console.log ('finish')
     }
     
@@ -144,3 +144,24 @@ function googleCountryFromGeoIth (xs, db, codemap, i, whenFinish) {
     console.log (query)
     http.get (query, onResponse).on ('error', function (err) {console.log (err)})
 }
+
+function syncGeoReference (filein, fileout) {
+    var countryCodes2to3 = {}
+    fs.readFileSync ('countryCodes.csv').
+	toString ().
+	split ('\r\n').
+	filter (function (x) {return x !== ''}).
+	forEach (function (x) {var y = x.split (';'); countryCodes2to3 [y[1]] = y [2]})
+
+    var currentRefDic = JSON.parse (fs.readFileSync (filein).toString ())
+    
+    whenFinish = function (db) {
+	fs.writeFileSync (fileout, JSON.stringify (db, null, '\t'))
+	console.log ('finish')
+    }
+
+    googleCountryFromGeoIth (Object.keys(currentRefDic), currentRefDic, countryCodes2to3, 0, whenFinish)
+    
+}
+
+exports.syncGeoReference = syncGeoReference
