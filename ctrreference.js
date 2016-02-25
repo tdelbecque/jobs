@@ -570,5 +570,16 @@
 			"latitude": "54°35′49.2″N"
 		},
 		"countryCode": "GBR"
+	},
+	"Lincolnshire, England": {
+	    "source": "https://en.wikipedia.org/wiki/Lincolnshire",
+	    "info": {
+		"countries": [
+		    "England"
+		],
+		"longitude": "0°11′0″W",
+		"latitude": "53°4′0″N"
+	    },
+	    "countryCode": "GBR"
 	}
 }
