@@ -46,7 +46,8 @@ function GeoDB (reference) {
 		latitude: latitude }}}
     
     this.save = function (stamp) {
-	fs.writeFileSync (mkPath (stamp), JSON.stringify (self.geoDB, null, '\t'));
+	fs.writeFileSync (mkPath (stamp), JSON.stringify (self.geoDB, null, '\t'))
+	require ('./google').syncCountries ()
     }
 
     this.size = function () {return Object.keys (self.geoDB).length}   
