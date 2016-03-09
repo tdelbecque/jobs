@@ -581,5 +581,38 @@
 		"latitude": "53°4′0″N"
 	    },
 	    "countryCode": "GBR"
-	}
+	},
+    "Bern": {
+	"source": "https://en.wikipedia.org/wiki/Bern",
+	"info": {
+	    "countries": [
+		"Switzerland"
+	    ],
+	    "longitude": "7°26′22.50″E",
+	    "latitude": "46°57′08.66″N"
+	},
+	"countryCode": "CHE"
+    },
+    "Cheshire (GB)": {
+	"source": "https://en.wikipedia.org/wiki/Cheshire",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "2°35′W",
+	    "latitude": "53°10′N"
+	},
+	"countryCode": "GBR"
+    },
+    "Durham": {
+	"source": "https://en.wikipedia.org/wiki/Durham,_England",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "1°34′23.88″W",
+	    "latitude": "54°46′33.96″N"
+	},
+	"countryCode": "GBR"
+    }
 }
