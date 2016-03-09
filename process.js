@@ -677,8 +677,9 @@ function asDelimited (array, fields) {
 	replace (/•/g, '').
 	replace (/‘/g, "'").
 	replace (/€/g, "(Euro)").
-	replace (/[\x00-\x1f]/g, '')
-	
+	replace (/[\x00-\x1f]/g, '').
+	replace (/\u200b/g, '').
+	replace (/\u00a0/g, ' ')
 }
 
 exports.asDelimited = asDelimited;
@@ -706,7 +707,9 @@ function asXML (array, fields) {
 				       replace (/•/g, '').
 				       replace (/‘/g, "'").
 				       replace (/€/g, "(Euro)").
-				       replace (/[\x00-\x1f]/g, '')
+				       replace (/[\x00-\x1f]/g, '').
+				       replace (/\u200b/g, '').
+				       replace (/\u00a0/g, ' ')
 				      );
 	    var fe = d.createElement (f);
 	    fe.appendChild (te);
