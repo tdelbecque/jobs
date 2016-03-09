@@ -83,8 +83,8 @@ function jobsByIdsFile (idsfile) {
 exports.jobsByIdsFile = jobsByIdsFile;
 
 function writeJobs (jobs, file) {
-    var header = 'id\tsectors\tlatitude\tlongitude\n'
-    var str = jobs.map (function (x) {return [x.id, x.flattenSectors, x.latitude, x.longitude].join ('\t')}).join ('\n')
+    var header = 'id\tsectors\tlatitude\tlongitude\ttitle\tdescription\n'
+    var str = jobs.map (function (x) {return [x.id, x.flattenSectors, x.latitude, x.longitude, x.title, x.description].join ('\t')}).join ('\n')
     fs.writeFileSync (file, header + str)
 }
 
