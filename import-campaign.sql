@@ -1,6 +1,6 @@
-drop table if exists campaigns;
+drop table if exists c5;
 
-create table campaigns (
+create table c5 (
        Title		char(4),
        FirstName	varchar,
        LastName		varchar,
@@ -41,7 +41,8 @@ create table campaigns (
        FLEX15			varchar,
        LL_FIRSTNAME		varchar,
        LL_LASTNAME		varchar,		
-       LL_ORGANISATION		varchar
+       LL_ORGANISATION		varchar,
+       variant			char(1)
 );
 
 --COPY campaigns FROM '/home/thierry/work/M_campaignlist-20160120110054.csv' WITH CSV DELIMITER ',' QUOTE '"' HEADER;
