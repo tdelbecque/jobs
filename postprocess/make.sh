@@ -26,17 +26,10 @@ perl addvariant.pl M_campaignlist-$V-G.csv | tail -n +2 >> M_campaignlist-$V-all
 perl liftSector.pl < M_campaignlist-intern-A.csv > M_intern-$V-A.csv
 perl liftSector.pl < M_campaignlist-intern-E.csv > M_intern-$V-E.csv
 
-perl -e 'print "rnk\temail\tid\tauth_ctry\tjob_ctry\tjobid\n"' > ctry2ctry-id-A.tsv
-perl sample.pl sample_A M_campaignlist-A-G.csv | tail -n +2 | perl -ne '($email, $id, $a, $b, $c, $d, $j1, $j2, $j3) = m!.+"(.+@.+?)".+<UID>(.+)</UID>.+(...)</COUNTRYCODE.+(...)</CC.+(...)</CC.+(...)</CC.+"(\d+)/.+"(\d+)/.+"(\d+)/!; print "1\t$email\t$id\t$a\t$b\t$j1\n2\t$email\t$id\t$a\t$c\t$j2\n3\t$email\t$id\t$a\t$d\t$j3\n"' >> ctry2ctry-id-A.tsv
-
-perl -e 'print "rnk\temail\tid\tauth_ctry\tjob_ctry\tjobid\n"' > ctry2ctry-id-E.tsv
-perl sample.pl sample_E M_campaignlist-E-F.csv | tail -n +2 | perl -ne '($email, $id, $a, $b, $c, $d, $j1, $j2, $j3) = m!.+"(.+@.+?)".+<UID>(.+)</UID>.+(...)</COUNTRYCODE.+(...)</CC.+(...)</CC.+(...)</CC.+"(\d+)/.+"(\d+)/.+"(\d+)/!; print "1\t$email\t$id\t$a\t$b\t$j1\n2\t$email\t$id\t$a\t$c\t$j2\n3\t$email\t$id\t$a\t$d\t$j3\n"' >> ctry2ctry-id-E.tsv
-
-perl -e 'print "rnk\temail\tid\tauth_ctry\tjob_ctry\tjobid\n"' > ctry2ctry-id-F.tsv
-cat M_campaignlist-tmp-F.csv | tail -n +2 | perl -ne '($email, $id, $a, $b, $c, $d, $j1, $j2, $j3) = m!.+"(.+@.+?)".+<UID>(.+)</UID>.+(...)</COUNTRYCODE.+(...)</CC.+(...)</CC.+(...)</CC.+"(\d+)/.+"(\d+)/.+"(\d+)/!; print "1\t$email\t$id\t$a\t$b\t$j1\n2\t$email\t$id\t$a\t$c\t$j2\n3\t$email\t$id\t$a\t$d\t$j3\n"' >> ctry2ctry-id-F.tsv
-
-perl -e 'print "rnk\temail\tid\tauth_ctry\tjob_ctry\tjobid\n"' > ctry2ctry-id-G.tsv
-perl sample-ccsoft.pl M_campaignlist-A-G.csv | tail -n +2 | perl -ne '($email, $id, $a, $b, $c, $d, $j1, $j2, $j3) = m!.+"(.+@.+?)".+<UID>(.+)</UID>.+(...)</COUNTRYCODE.+(...)</CC.+(...)</CC.+(...)</CC.+"(\d+)/.+"(\d+)/.+"(\d+)/!; print "1\t$email\t$id\t$a\t$b\t$j1\n2\t$email\t$id\t$a\t$c\t$j2\n3\t$email\t$id\t$a\t$d\t$j3\n"' >> ctry2ctry-id-G.tsv
+perl sample.pl sample_A M_campaignlist-A-G.csv | tail -n +2 | perl extract-pairings.pl > ctry2ctry-id-dist-A.tsv
+perl sample.pl sample_E M_campaignlist-E-F.csv | tail -n +2 | perl extract-pairings.pl > ctry2ctry-id-dist-E.tsv
+cat M_campaignlist-tmp-F.csv | tail -n +2 | perl extract-pairings.pl > ctry2ctry-id-dist-F.tsv
+perl sample-ccsoft.pl M_campaignlist-A-G.csv | tail -n +2 | perl extract-pairings.pl > ctry2ctry-id-dist-G.tsv
 
 
 
