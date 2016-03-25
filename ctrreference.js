@@ -428,6 +428,17 @@
 		},
 		"countryCode": "USA"
 	},
+	"North West": {
+		"source": "https://en.wikipedia.org/wiki/North_West_England",
+		"info": {
+			"countries": [
+				"England"
+			],
+			"longitude": "2°38′00″W",
+			"latitude": "54°01′00″N"
+		},
+		"countryCode": "GBR"
+	},
 	"North West England, England": {
 		"source": "https://en.wikipedia.org/wiki/North_West_England",
 		"info": {
@@ -614,5 +625,38 @@
 	    "latitude": "54°46′33.96″N"
 	},
 	"countryCode": "GBR"
-    }
+    },
+    "Southampton": {
+	"source": "https://en.wikipedia.org/wiki/Southampton",
+	"info": {
+	    "countries": [
+		"England"
+	    ],
+	    "longitude": "1°24′W",
+	    "latitude": "50°54′N"
+	},
+	"countryCode": "GBR"
+    },
+    "Palmerston North, New Zealand": {
+	"source": "https://en.wikipedia.org/wiki/Palmerston_North",
+	"info": {
+	    "countries": [
+		"New Zealand"
+	    ],
+	    "longitude": "175°36′42″E",
+	    "latitude": "40°21′18″S"
+	},
+	"countryCode": "NZL"	
+    },
+    "Victoria (AU)": {
+	"source": "https://en.wikipedia.org/wiki/Victoria_%28Australia%29",
+	"info": {
+	    "countries": [
+		"Australia"
+	    ],
+	    "longitude": "144°0′0″E",
+	    "latitude": "37°0′0″S"
+	},
+	"countryCode": "AUS"	
+    }    
 }
