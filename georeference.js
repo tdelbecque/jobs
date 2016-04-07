@@ -542,5 +542,31 @@
 	    "longitude": "144°0′0″E",
 	    "latitude": "37°0′0″S"
 	}
-    }    
+    },
+    "Cincinnati, Ohio. US": {
+	"source": "https://en.wikipedia.org/wiki/Cincinnati",
+	"info": {
+	    "countries": ["United States"],
+	    "longitude": "84°31′W",
+	    "latitude": "39°6′N"
+	}
+    },
+    "Brisbane City, Brisbane (AU)": {
+	"source": "https://en.wikipedia.org/wiki/Brisbane",
+	"info": {
+	    "countries": ["Australia"],
+	    "longitude": "153°2′0″E",
+	    "latitude": "27°28′0″S"
+	}
+    },
+    "Bristol (City Centre), City of Bristol": {
+	"source": "https://en.wikipedia.org/wiki/Bristol",
+	"info": {
+	    "countries": [
+		" England"
+	    ],
+	    "longitude": "2°35′W",
+	    "latitude": "51°27′N"
+	}
+    }
 }
