@@ -744,6 +744,52 @@ function HCTuplesAsXML (array) {
 
 exports.HCTuplesAsXML = HCTuplesAsXML;
 
+function mainSectorsTuplesAsXML (array) {
+    var d = new xmldom.DOMParser ().parseFromString ('<root></root>');
+    var root = d.firstChild;
+    array.forEach (function (r) {
+	var mainSectors = r.flattenSectors.
+	    split (';').
+	    filter (function (s) {return s.indexOf (':') === -1});
+	mainSectors.forEach (function (sector) {
+	    var re = d.createElement ('row')
+	    var e = d.createElement ('id')
+	    var te = d.createTextNode (r.id)
+	    e.appendChild (te)
+	    re.appendChild (e)
+	    e = d.createElement ('mainsector')
+	    te = d.createTextNode (sector.replace (/&/g, '&amp;'))
+	    e.appendChild (te)
+	    re.appendChild (e);
+	    root.appendChild (re)})})
+    
+    return d;
+}
+
+exports.mainSectorsTuplesAsXML = mainSectorsTuplesAsXML;
+
+function sectorsTuplesAsXML (array) {
+    var d = new xmldom.DOMParser ().parseFromString ('<root></root>');
+    var root = d.firstChild;
+    array.forEach (function (r) {
+	var mainSectors = r.flattenSectors.split (';')
+	mainSectors.forEach (function (sector) {
+	    var re = d.createElement ('row')
+	    var e = d.createElement ('id')
+	    var te = d.createTextNode (r.id)
+	    e.appendChild (te)
+	    re.appendChild (e)
+	    e = d.createElement ('sector');
+	    te = d.createTextNode (sector)
+	    e.appendChild (te)
+	    re.appendChild (e);
+	    root.appendChild (re)})})
+    
+    return d;
+}
+
+exports.sectorsTuplesAsXML = sectorsTuplesAsXML;
+
 function HCTuplesAsDelimited (array) {
     var str = '';
     array.forEach (function (r) {
