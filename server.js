@@ -130,10 +130,20 @@ function handleGetJobshc (parameters, response) {
     handleGetXML (parameters, response, UTILS.HCTuplesAsXML)
 }
 
+function handleGetMainSectors (parameters, response) {
+    handleGetXML (parameters, response, UTILS.mainSectorsTuplesAsXML)
+}
+
+function handleGetSectors (parameters, response) {
+    handleGetXML (parameters, response, UTILS.sectorsTuplesAsXML)
+}
+
 var queryHandlers = {
     "/alert": handleAlert,
     "/jobs": handleGetJobs,
-    "/jobshc": handleGetJobshc
+    "/jobshc": handleGetJobshc,
+    "/mainsectors": handleGetMainSectors,
+    "/sectors": handleGetSectors
 };
 
 var getIP = require('ipware')().get_ip;
