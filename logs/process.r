@@ -89,24 +89,61 @@ preliminary <- function () {
 nthBiggerVal <- function (x, n) x [order (-x)] [n]
 aboveNthBigger <- function (x, n) x >= nthBiggerVal (x, n)
 
-precCurve <- function (binflag, score, n=10000, step=100) {
+nthBiggerValFun <- function (x) {
+    o <- order (-x)
+    function (n) x [o [n]]
+}
+
+aboveNthBiggerFun <- function (x) {
+    fun <- nthBiggerValFun (x)
+    function (n) x >= rep (fun (n), each=length (x))
+}
+
+plotPrecCurve <- function (
+    binflag, score, n=100, step=100,
+    target=list (value=0.1, col='green'),
+    bootstrap=list (B=50, bounds=c(0.1 ,0.9), col='red')) {
+
+    p <- precCurve2 (binflag=binflag, score=score, n=n, step=step)
+    plot (p, type='l', col='black')
+    if (! is.null (target)) 
+        abline (h=target$value, col=target$col)
+    if (! is.null (bootstrap)) {
+        if (is.null (bootstrap$B)) bootstrap$B <- 50
+        if (is.null (bootstrap$bounds)) bootstrap$bounds <- c (0.1, 0.9)
+        if (is.null (bootstrap$col)) bootstrap$col <- 'red'
+        b <- bootstrapPrecCurve (binflag=binflag, score=score, n=n, step=step,
+                                 boot=bootstrap$B)
+        for (x in bootstrap$bounds) {
+            lines (apply (b, MARGIN=1, FUN=quantile, prob=x), col=bootstrap$col)
+        }
+    }
+}
+
+precCurve <- function (binflag, score, n=100, step=100) {
+    fun <- aboveNthBiggerFun (score)
     ret <- c ()
     for (i in 1:n) {
         u <- i*step
-        tbl <- table (binflag, aboveNthBigger (score, u))
+        tbl <- table (binflag, fun (u)) #table (binflag, aboveNthBigger (score, u))
         if (ncol (tbl) == 2)
             ret <- c (ret, t (t (tbl) / apply (tbl, MARGIN=2, FUN=sum)) [2,2])
         else
-            break
+            ret <- c (ret, 0)
     }
     ret
 }
 
-bootstrapPrecCurve <- function (binflag, score, n=10000, step=100, bootstrap=50) {
+precCurve2 <- function (binflag, score, n=100, step=100) {
+    m <- matrix (aboveNthBiggerFun (score) (step*(1:n)), ncol=n)
+    apply (m, 2, function (x) sum (x*binflag))/apply(m, 2, sum)
+}
+    
+bootstrapPrecCurve <- function (binflag, score, n=100, step=100, bootstrap=50) {
     xs <- c ();
     for (i in 1:bootstrap) {
         s <- sample (seq_along(binflag), length (binflag), TRUE)
-        xs <- c (xs, precCurve (binflag [s], score [s], n, step))
+        xs <- c (xs, precCurve2 (binflag [s], score [s], n, step))
     }
     matrix (xs, ncol=bootstrap)
 }
@@ -178,24 +215,25 @@ experience2 <- function () {
     p <- predict (n, newdata=foo.valid, type="response") # pas d'amélioration des performances
 }
 
-saveModel <- function (formula, data, split, ntree=200, mtry=5, prefix) {
+saveModel <- function (formula, data, id, split, ntree=200, mtry=5, prefix) {
     set.seed (1)
-    n <- randomForest (formula, data=data [split == 3,], ntree=ntree, mtry=mtry, do.trace=TRUE)
-    save (list (model=n, data=data, split=split), file=paste(prefix, 'rf.RDATA', sep=''))
+    n <- randomForest (formula, data=data [split != 3,], ntree=ntree, mtry=mtry, do.trace=TRUE)
+    l <- list (model=n, data=data, split=split, seed=1, id=id)
+    save (l, file=paste(prefix, 'rf.RDATA', sep=''))
     n
 }
 
 exportModel <- function (prefixin, prefixout) {
-    l <- load (paste (prefixin, 'rf.RDATA', sep=''))
+    load (paste (prefixin, 'rf.RDATA', sep=''))
     m <- l$model
     mtbl <- NULL
-    for (i in 1:ntree(l$model)) {
+    for (i in 1:l$model$ntree) {
         tree <- getTree (m,i)
         mtbl <- rbind (mtbl, cbind (i, 1:nrow (tree), tree))
     }
     term.labels <- attr (m$terms, 'term.labels')
     term.table <- cbind (term.labels, seq_along (term.labels))
-    data <- cbind (split=split, l$data)
+    data <- cbind (id=l$id,split=l$split, l$data)
     
     write.table (mtbl, quote=FALSE, row.name=FALSE, col.name=FALSE, sep='\t',
                  file=paste (prefixout, 'forest.tsv', sep=''))
