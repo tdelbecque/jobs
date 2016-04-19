@@ -240,7 +240,7 @@ do_it <- function () {
 ###
 ### Example:
 ###
-### y <- robustTestTraining (data.select30, B=100, params=list(ntrees=150:250, ntry=2:10))
+### y <- robustTestTraining (data.select30, B=100, params=list(ntrees=150:250, ntrys=2:10))
 ### plot (apply (y$Q, MARGIN=1, FUN=mean), type='l', ylim=c(0, 1))
 ### lines (apply (y$Q, MARGIN=1, FUN=quantile, prob=0.05), col='red')
 ### lines (apply (y$Q, MARGIN=1, FUN=quantile, prob=0.95), col='red')
