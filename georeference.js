@@ -568,5 +568,133 @@
 	    "longitude": "2°35′W",
 	    "latitude": "51°27′N"
 	}
+    },
+    "Near Bath and Bristol": {
+	"source": "https://en.wikipedia.org/wiki/Bristol",
+	"info": {
+	    "countries": [
+		" England"
+	    ],
+	    "longitude": "2°35′W",
+	    "latitude": "51°27′N"
+	}
+    },
+    "Munich, BY DE": {
+	"source": "https://en.wikipedia.org/wiki/Munich",
+	"info": {
+	    "countries": [
+		"Germany"
+	    ],
+	    "longitude": "11°34′0″E",
+	    "latitude": "48°8′0″N"
+	}
+    },
+    "Paris, Île-de-France FR": {
+	"source": "https://en.wikipedia.org/wiki/Paris",
+	"info": {
+	    "countries": [
+		"France"
+	    ],
+	    "longitude": "2°21′03″E",
+	    "latitude": "48°51′24″N"
+	}
+    },
+    "Paris, A8 FR": {
+	"source": "https://en.wikipedia.org/wiki/Paris",
+	"info": {
+	    "countries": [
+		"France"
+	    ],
+	    "longitude": "2°21′03″E",
+	    "latitude": "48°51′24″N"
+	}
+    },
+    "New York, New York": {
+	"source": "https://en.wikipedia.org/wiki/New_York_City",
+	"info": {
+	    "countries": ["USA"],
+	    "longitude": "74°0′21.24″W",
+	    "latitude": "40°42′45.72″N"
+	}
+    },
+    "USA - New Jersey / New York": {
+	"source": "https://en.wikipedia.org/wiki/New_York_City",
+	"info": {
+	    "countries": ["USA"],
+	    "longitude": "74°0′21.24″W",
+	    "latitude": "40°42′45.72″N"
+	}
+    },
+    "Soho, New York City, NY": {
+	"source": "https://en.wikipedia.org/wiki/New_York_City",
+	"info": {
+	    "countries": ["USA"],
+	    "longitude": "74°0′21.24″W",
+	    "latitude": "40°42′45.72″N"
+	}
+    },
+    "Copenhagen, Hovedstaden DK": {
+	"source": "https://en.wikipedia.org/wiki/Copenhagen",
+	"info": {
+	    "countries": [
+		"Denmark"
+	    ],
+	    "longitude": "12°34′06″E",
+	    "latitude": "55°40′34″N"
+	}
+    },
+    "Dundee, UK": {
+	"source": "https://en.wikipedia.org/wiki/Dundee",
+	"info": {
+	    "countries": [
+		"Scotland"
+	    ],
+	    "longitude": "2°58′12″W",
+	    "latitude": "56°27′50″N"
+	}
+    },
+    "Central Scotland": {
+	"source": "https://en.wikipedia.org/wiki/Centre_of_Scotland",
+	"info": {
+	    "countries": [
+		"Scotland"
+	    ],
+	    "longitude": "4°10′57.54″W",
+	    "latitude": "56°49′0.92″N"
+	}
+    },
+    "Flintshire, Wales": {
+	"source": "https://en.wikipedia.org/wiki/Flint,_Flintshire",
+	"info": {
+	    "countries": [
+		"Scotland"
+	    ],
+	    "longitude": "3°7′55.2″W",
+	    "latitude": "53°14′38.4″N"
+	}
+    },
+    "Lausanne": {
+	"source": "https://en.wikipedia.org/wiki/Lausanne",
+	"info": {
+	    "countries": [],
+	    "longitude": "6°38′0.6″E",
+	    "latitude": "46°31′11.4″N"
+	}
+    },
+    "London and the Home Counties": {
+	"source": "https://en.wikipedia.org/wiki/London",
+	"info": {
+	    "countries": ["England"],
+	    "longitude": "0°7′39″W",
+	    "latitude": "51°30′26″N"
+	}
+    },
+    "The company is based in Hwaseong-si, a satellite city of Seoul.": {
+	"source": "https://en.wikipedia.org/wiki/Hwaseong,_Gyeonggi",
+	"info": {
+	    "countries": ["South Korea"],
+	    "longitude": "126°49′53″E",
+	    "latitude": "37°11′59″N"
+	}
     }
 }
