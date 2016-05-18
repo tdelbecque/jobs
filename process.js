@@ -679,7 +679,8 @@ function asDelimited (array, fields) {
 	replace (/€/g, "(Euro)").
 	replace (/[\x00-\x1f]/g, '').
 	replace (/\u200b/g, '').
-	replace (/\u00a0/g, ' ')
+	replace (/\u00a0/g, ' ').
+	replace (/欧|莱|雅|研|发|中|心|暑|期|实|习|生|项|目|开|始|啦|！/g, '')
 }
 
 exports.asDelimited = asDelimited;
@@ -709,7 +710,8 @@ function asXML (array, fields) {
 				       replace (/€/g, "(Euro)").
 				       replace (/[\x00-\x1f]/g, '').
 				       replace (/\u200b/g, '').
-				       replace (/\u00a0/g, ' ')
+				       replace (/\u00a0/g, ' ').
+				       replace (/欧|莱|雅|研|发|中|心|暑|期|实|习|生|项|目|开|始|啦|！/g, '')
 				      );
 	    var fe = d.createElement (f);
 	    fe.appendChild (te);
