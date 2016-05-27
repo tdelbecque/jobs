@@ -38,7 +38,7 @@ plotPrecCurve <- function (
     p <- precCurve (binflag=binflag, score=score, n=n, step=step)
     plot (p, type='l', col='black',
           ylab="precision", xlab="population size (in hundreds)",
-          main="precision growth", ylim=c(0,0.5))
+          main="precision growth", ylim=c(0,1))
     if (! is.null (target)) 
         abline (h=target$value, col=target$col)
     if (! is.null (bootstrap)) {
