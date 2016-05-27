@@ -831,6 +831,24 @@
 	    "latitude": "37°11′59″N"
 	},
 	"countryCode": "KOR"
+    },
+    "Anchorage, Alaska": {
+	"source": "https://en.wikipedia.org/wiki/Alaska",
+	"info": {
+	    "countries": [],
+	    "longitude": "150°0′0″W",
+	    "latitude": "64°0′0″N"
+	},
+	"countryCode": "USA"
+    },
+    "Ulm, Baden-Württemberg (DE)": {
+	"source": "https://en.wikipedia.org/wiki/Ulm",
+	"info": {
+	    "countries": [],
+	    "longitude": "9°59′0″E",
+	    "latitude": "48°24′0″N"
+	},
+	"countryCode": "DEU"
     }
 
 }
