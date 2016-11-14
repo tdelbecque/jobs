@@ -712,6 +712,72 @@
 	    "longitude": "9°59′0″E",
 	    "latitude": "48°24′0″N"
 	}
+    },
+    "Münster, Hessen (DE)": {
+	"source": "https://en.wikipedia.org/wiki/M%C3%BCnster",
+	"info": {
+	    "countries": [],
+	    "longitude": "7°38′0″E",
+	    "latitude": "51°58′0″N"
+	}
+    },
+    "Milan, LM IT": {
+	"source": "https://en.wikipedia.org/wiki/Milan",
+	"info": {
+	    "countries": [],
+	    "longitude": "9°11′0″E",
+	    "latitude": "45°28′0″N"
+	}
+    },
+    "Financial District, Manhattan, NYC": {
+	"source": "https://en.wikipedia.org/wiki/Manhattan",
+	"info": {
+	    "countries": [],
+	    "longitude": "73°59′39″W",
+	    "latitude": "40°43′42″N"
+	}
+    },
+    "ZURICH, NE CH": {
+	"source": "https://en.wikipedia.org/wiki/Z%C3%BCrich",
+	"info": {
+	    "countries": [],
+	    "longitude": "8°33′0″E",
+	    "latitude": "47°22′0″N"
+	}
+    },
+    "Commerce, CA": {
+	"source": "https://en.wikipedia.org/wiki/Commerce,_California",
+	"info": {
+	    "countries": [],
+	    "longitude": "118°9′17″W",
+	    "latitude": "34°0′2″N"
+	}
+    },
+    "AFBI Loughgall, Co Armagh": {
+	"source": "https://en.wikipedia.org/wiki/Armagh",
+	"info": {
+	    "countries": [],
+	    "longitude": "6°39′16″W",
+	    "latitude": "54°20′59″N"
+	}
+    },
+    "Cambridge, Massachusetts (US)": {
+	"source": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+	"info": {
+	    "countries": [
+		" United States"
+	    ],
+	    "longitude": "71°06′38″W",
+	    "latitude": "42°22′25″N"
+	}
+    },
+    "New York City / Central New Jersey": {
+	"source": "https://en.wikipedia.org/wiki/New_York_City",
+	"info": {
+	    "countries": ["USA"],
+	    "longitude": "74°0′21.24″W",
+	    "latitude": "40°42′45.72″N"
+	}
     }
-
+    
 }
