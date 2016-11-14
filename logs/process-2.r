@@ -280,3 +280,14 @@ robustTestTraining <- function (dataOrigin, primaryResample=TRUE, B=100,
     }
     list (P=P, Q=matrix (Q, ncol=B), S=S, NTREES=NTREES, NTRYS=NTRYS)
 }
+
+exportModelTable <- function (m, file) {
+    mtbl <- NULL
+    for (i in 1:m$ntree) {
+        tree <- getTree (m,i)
+        mtbl <- rbind (mtbl, cbind (i, 1:nrow (tree), tree))
+    }
+    write.table (mtbl, quote=FALSE, row.name=FALSE, col.name=FALSE, sep='\t',
+                 file=file)
+
+}
