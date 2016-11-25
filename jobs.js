@@ -1,5 +1,7 @@
 #!/usr/bin/node --max-old-space-size=1024
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
 var sendMeAlert = require ('./mail').sendMeAlert;
 
 process.on('uncaughtException', function (err) {
